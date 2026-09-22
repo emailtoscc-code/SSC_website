@@ -1,0 +1,197 @@
+#tbh{
+
+   width: 60%;
+   border:1px solid black;
+   border-collapse: collapse;
+   
+   th,tr,td{
+    border:1px solid black;
+    th {
+  background-color: #04AA6D;
+  color: white;
+}
+
+text-align: center;
+
+   }
+}
+h3{
+    color: #04AA6D !important;
+}
+#tdn{
+
+   width: 60%;
+   border:1px solid black;
+   border-collapse: collapse;
+   
+   th,tr,td{
+    border:1px solid black;
+    th {
+  
+}
+
+text-align: center;
+
+   }
+}
+#tba{
+
+   width: 60%;
+   border:1px solid black;
+   border-collapse: collapse;
+   
+   th,tr,td{
+    border:1px solid black;
+    th {
+  background-color: #04AA6D;
+  color: white;
+}
+
+text-align: center;
+
+   }
+}
+#tbb{
+
+   width: 10%;
+   border:1px solid black;
+   border-collapse: collapse;
+   
+   th,tr,td{
+    border:1px solid black;
+    th {
+  background-color: #04AA6D;
+  color: white;
+}
+
+text-align: center;
+
+   }
+}
+li{
+    color:purple;
+}
+.box{
+   color: green;
+}
+#tbc{
+
+   width: 60%;
+   border:1px solid black;
+   border-collapse: collapse;
+   
+   th,tr,td{
+    border:1px solid black;
+    th {
+  background-color: #04AA6D;
+  color: white;
+}
+
+text-align: center;
+
+   }
+}
+#tbe{
+
+   width: 60%;
+   border:1px solid black;
+   border-collapse: collapse;
+   
+   th,tr,td{
+    border:1px solid black;
+    th {
+  background-color: #04AA6D;
+  color: white;
+}
+
+text-align: center;
+
+   }
+}
+.arrow{
+   font-size: 40px;
+   color: red;
+}
+.int{
+   color: blueviolet;
+}
+.code-box{
+   background-color: greenyellow;
+   color:black;
+   border: 2px solid black;
+   padding: 10px;
+   width: fit-content;
+   font-family: consolas, monospace;
+}
+.example{
+   color: red;
+   font-weight: bold;
+   font-size: 20px;
+   margin-bottom: 1px;
+}
+.code-boxer  {
+   background-color: lightcoral;
+   color:black;
+   border: 2px solid black;
+   padding: 10px;
+   width: fit-content;
+   font-family: consolas, monospace;
+}
+.output{
+   color: red;
+   font-weight: bold;
+   font-size: 20px;
+   margin-bottom: 10px;
+}
+.CREATE-DATABASE-College{
+   color:blue;
+}
+.show-databases-box{
+   background-color: lightblue;
+   color: black;
+   border: 2px solid black;
+   border-radius: 10px;
+    padding: 10px;
+   width: fit-content;
+   font-family: consolas, monospace;
+   margin-top: 30px;
+}
+.Syntax{
+   color: red;
+}
+.Show-DATABASES{
+    background-color: yellow;
+   color:black;
+   border: 2px solid black;
+   padding: 10px;
+   width: fit-content;
+   font-family: consolas, monospace;
+   margin-top: 10px;
+}
+.database{
+   display: flex;
+   align-items: center;
+   gap: 40px;
+}
+.database-table{
+   border-collapse: collapse;
+   width: 250px;
+   text-align: center;
+   font-family: Arial, Helvetica, sans-serif;
+   th,td{
+      border: 2px solid black;
+      padding: 10px;
+      color: black;
+   }
+   th{
+      background-color: pink;
+      text-align: center;
+   }
+}
+.title{
+   font-size: 22px;
+   font-weight: bold;
+   margin-bottom: 10px;
+   color: green;
+}
+.style

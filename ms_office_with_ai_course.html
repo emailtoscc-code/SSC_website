@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MS Office with AI - Course Syllabus</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Arial,Helvetica,sans-serif;background:#f4f7fb;color:#1f2937;line-height:1.6}
+.container{width:min(1150px,92%);margin:auto}
+header{background:linear-gradient(135deg,#123b73,#1769aa);color:white;padding:55px 20px;text-align:center}
+.logo{width:150px;height:55px;margin:0 auto 22px;border:2px dashed rgba(255,255,255,.75);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:12px;letter-spacing:.5px}
+header h1{font-size:clamp(32px,5vw,54px);margin-bottom:8px}
+header h2{font-size:22px;font-weight:400;margin-bottom:12px}
+header p{opacity:.9}
+.badges{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:24px}
+.badge{background:rgba(255,255,255,.15);padding:8px 15px;border-radius:20px;font-size:14px}
+section{padding:42px 0}
+.section-title{text-align:center;margin-bottom:28px}
+.section-title h2{font-size:30px;color:#123b73}
+.section-title p{color:#64748b}
+.objective{background:white;border-radius:16px;padding:28px;box-shadow:0 8px 25px rgba(15,23,42,.07);font-size:17px}
+.modules{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+.module{background:white;border-radius:16px;overflow:hidden;box-shadow:0 7px 22px rgba(15,23,42,.07);border:1px solid #e5e7eb}
+.module-header{padding:20px;background:#eef6ff;color:#123b73;font-size:20px;font-weight:700;cursor:pointer;display:flex;justify-content:space-between;align-items:center}
+.module-header span{font-size:25px}
+.module-content{padding:22px}
+.module-content ul{padding-left:20px}
+.module-content li{margin:7px 0}
+.project-grid,.skill-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.card{background:white;padding:22px;border-radius:14px;box-shadow:0 6px 18px rgba(15,23,42,.06);border:1px solid #e5e7eb}
+.card h3{color:#1769aa;margin-bottom:8px}
+.roadmap{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+.phase{background:white;border-radius:14px;padding:18px;text-align:center;border-top:5px solid #1769aa;box-shadow:0 6px 18px rgba(15,23,42,.06)}
+.phase strong{display:block;color:#123b73;margin-bottom:6px}
+.checklist{background:white;padding:25px;border-radius:16px;box-shadow:0 7px 22px rgba(15,23,42,.07)}
+.check-row{display:flex;align-items:center;gap:10px;padding:10px;border-bottom:1px solid #eef2f7}
+.check-row:last-child{border-bottom:0}
+.check-row input{width:18px;height:18px}
+.progress-wrap{margin-top:20px}
+.progress-bar{height:12px;background:#e5e7eb;border-radius:10px;overflow:hidden}
+.progress{height:100%;width:0;background:#1769aa;transition:.3s}
+.progress-text{text-align:center;margin-top:8px;font-weight:bold}
+footer{background:#123b73;color:white;text-align:center;padding:25px;margin-top:20px}
+.btn{border:0;background:#1769aa;color:white;padding:10px 17px;border-radius:8px;cursor:pointer;margin-top:15px}
+.print-btn{text-align:center}
+@media(max-width:850px){
+ .modules{grid-template-columns:1fr}
+ .project-grid,.skill-grid{grid-template-columns:repeat(2,1fr)}
+ .roadmap{grid-template-columns:1fr 1fr}
+}
+@media(max-width:550px){
+ header{padding:38px 15px}
+ .project-grid,.skill-grid,.roadmap{grid-template-columns:1fr}
+ .module-header{font-size:17px}
+}
+@media print{
+ body{background:white}
+ header{padding:25px}
+ .btn,.print-btn{display:none}
+ .module{break-inside:avoid;box-shadow:none}
+ section{padding:20px 0}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container">
+    <link rel="stylesheet" href="office-ai-icon.css">
+
+<div class="oa-lockup" style="--size:160px">
+  <div class="oa-icon"><!-- 16 child divs, page section 06 mein copy-paste ready hai --></div>
+  <div class="oa-lockup__word">Office<b>AI</b></div>
+</div>
+    <div><img src="./images/office-ai-logo-1520w.png" width="250px"></div>
+    <h1>MS OFFICE WITH AI</h1>
+    <h2>Professional Course Syllabus</h2>
+    <p>Learn Office Skills + AI • Work Smarter • Create Faster • Build Professionally</p>
+    <div class="badges">
+      <div class="badge">MS Word + AI</div>
+      <div class="badge">MS Excel + AI</div>
+      <div class="badge">PowerPoint + AI</div>
+      <div class="badge">AI Tools</div>
+    </div>
+  </div>
+</header>
+
+<main class="container">
+
+<section>
+ <div class="section-title"><h2>Course Objective</h2><p>Practical, job-oriented Office + AI training</p></div>
+ <div class="objective">
+ This course develops practical MS Office skills combined with modern AI tools. Students learn to create professional
+ documents, analyze data, build presentations, automate repetitive work, and use AI responsibly for workplace productivity.
+ </div>
+</section>
+
+<section>
+ <div class="section-title"><h2>Course Modules</h2><p>Click any module to expand or collapse the topics</p></div>
+ <div class="modules">
+
+  <div class="module">
+   <div class="module-header" onclick="toggle(this)">Module 1 — MS Word + AI <span>+</span></div>
+   <div class="module-content">
+    <ul>
+     <li>Document creation, formatting, styles, themes and templates</li>
+     <li>Page setup, sections, headers, footers and page numbering</li>
+     <li>Tables, images, shapes, icons and SmartArt</li>
+     <li>Mail Merge, labels and envelopes</li>
+     <li>Table of Contents, footnotes, citations and captions</li>
+     <li>Track Changes, comments and document protection</li>
+     <li>Professional letters, reports, resumes, notices and certificates</li>
+     <li>AI for drafting, rewriting, summarizing and proofreading</li>
+     <li>AI prompts for official letters, reports and professional content</li>
+    </ul>
+   </div>
+  </div>
+
+  <div class="module">
+   <div class="module-header" onclick="toggle(this)">Module 2 — MS Excel + AI <span>+</span></div>
+   <div class="module-content">
+    <ul>
+     <li>Data entry, formatting, tables, sorting and filtering</li>
+     <li>SUM, AVERAGE, MIN, MAX, COUNT and COUNTA</li>
+     <li>IF, AND, OR and IFERROR</li>
+     <li>SUMIF, SUMIFS, COUNTIF, COUNTIFS and AVERAGEIF</li>
+     <li>XLOOKUP, VLOOKUP and INDEX-MATCH</li>
+     <li>Text, date and time functions</li>
+     <li>Data validation, conditional formatting and data cleaning</li>
+     <li>Charts, PivotTables, PivotCharts and dashboards</li>
+     <li>AI for formulas, analysis, summaries, trends and chart suggestions</li>
+    </ul>
+   </div>
+  </div>
+
+  <div class="module">
+   <div class="module-header" onclick="toggle(this)">Module 3 — PowerPoint + AI <span>+</span></div>
+   <div class="module-content">
+    <ul>
+     <li>Slides, layouts, themes and Slide Master</li>
+     <li>Professional slide design and visual hierarchy</li>
+     <li>Images, icons, shapes, SmartArt, charts and tables</li>
+     <li>Transitions, animations and presenter tools</li>
+     <li>Speaker notes and presentation delivery</li>
+     <li>Business, training, project and seminar presentations</li>
+     <li>AI for presentation ideas, outlines, slide content and speaker notes</li>
+     <li>AI-assisted rewriting, summaries and storytelling</li>
+    </ul>
+   </div>
+  </div>
+
+  <div class="module">
+   <div class="module-header" onclick="toggle(this)">Module 4 — AI Tools for Office Work <span>+</span></div>
+   <div class="module-content">
+    <ul>
+     <li>Generative AI and Large Language Models (LLMs)</li>
+     <li>Prompt Engineering: role, context, task, constraints and output format</li>
+     <li>ChatGPT for office productivity</li>
+     <li>Google Gemini for writing, brainstorming and productivity</li>
+     <li>Microsoft Copilot for Microsoft 365 workflows</li>
+     <li>AI for document writing, proofreading and summarization</li>
+     <li>AI for spreadsheets, formulas and data analysis</li>
+     <li>AI for presentations and visual content</li>
+     <li>AI for emails, official messages, research and meeting summaries</li>
+     <li>Responsible AI: privacy, fact-checking, copyright and sensitive-data awareness</li>
+    </ul>
+   </div>
+  </div>
+
+  <div class="module">
+   <div class="module-header" onclick="toggle(this)">Module 5 — Practical Projects <span>+</span></div>
+   <div class="module-content">
+    <ul>
+     <li>Professional office report in MS Word using AI</li>
+     <li>Excel sales/employee/student dataset analysis</li>
+     <li>Excel dashboard using PivotTable and charts</li>
+     <li>Professional PowerPoint presentation using AI</li>
+     <li>Official letter/document workflow using AI</li>
+     <li>Final integrated Word + Excel + PowerPoint + AI productivity project</li>
+    </ul>
+   </div>
+  </div>
+
+ </div>
+</section>
+
+<section>
+ <div class="section-title"><h2>Suggested Course Duration</h2><p>Flexible learning roadmap</p></div>
+ <div class="roadmap">
+  <div class="phase"><strong>Phase 1</strong>MS Word + AI<br>10–15 Days</div>
+  <div class="phase"><strong>Phase 2</strong>MS Excel + AI<br>10–15 Days</div>
+  <div class="phase"><strong>Phase 3</strong>PowerPoint + AI<br>10–15 Days</div>
+  <div class="phase"><strong>Phase 4</strong>AI Tools<br>10–15 Days</div>
+  <div class="phase"><strong>Phase 5</strong>Projects + Assessment<br>3 Days</div>
+ </div>
+</section>
+
+<section>
+ <div class="section-title"><h2>Practical Projects</h2><p>Learn by building real workplace outputs</p></div>
+ <div class="project-grid">
+  <div class="card"><h3>01. Word Report</h3><p>Create a professional report using Word and AI.</p></div>
+  <div class="card"><h3>02. Excel Analysis</h3><p>Analyze a real-world sales, employee or student dataset.</p></div>
+  <div class="card"><h3>03. Excel Dashboard</h3><p>Build a dashboard using PivotTables and charts.</p></div>
+  <div class="card"><h3>04. AI Presentation</h3><p>Create a professional PowerPoint presentation with AI assistance.</p></div>
+  <div class="card"><h3>05. Official Documents</h3><p>Create official letters and workplace documents using AI.</p></div>
+  <div class="card"><h3>06. Final Project</h3><p>Complete an integrated Word + Excel + PowerPoint + AI project.</p></div>
+ </div>
+</section>
+
+<section>
+ <div class="section-title"><h2>Skills Students Will Gain</h2><p>Workplace-ready skills</p></div>
+ <div class="skill-grid">
+  <div class="card">✓ Professional Word documents and reports</div>
+  <div class="card">✓ Excel formulas, lookups and dashboards</div>
+  <div class="card">✓ Professional PowerPoint presentations</div>
+  <div class="card">✓ AI-assisted writing and analysis</div>
+  <div class="card">✓ Effective prompt engineering</div>
+  <div class="card">✓ AI fact-checking and responsible use</div>
+ </div>
+</section>
+
+<section>
+ <div class="section-title"><h2>Completion Checklist</h2><p>Track student learning progress</p></div>
+ <div class="checklist" id="checklist">
+  <label class="check-row"><input type="checkbox"> Complete MS Word + AI module</label>
+  <label class="check-row"><input type="checkbox"> Complete MS Excel + AI module</label>
+  <label class="check-row"><input type="checkbox"> Complete PowerPoint + AI module</label>
+  <label class="check-row"><input type="checkbox"> Complete AI Tools module</label>
+  <label class="check-row"><input type="checkbox"> Complete practical assignments</label>
+  <label class="check-row"><input type="checkbox"> Complete final integrated project</label>
+  <div class="progress-wrap">
+   <div class="progress-bar"><div class="progress" id="progress"></div></div>
+   <div class="progress-text" id="progressText">0% Completed</div>
+  </div>
+  <div class="print-btn"><button class="btn" onclick="window.print()">Print Syllabus</button></div>
+ </div>
+</section>
+
+</main>
+
+<footer>
+ <p><strong>MS Office with AI</strong> — Professional Course Syllabus</p>
+ <p>Word • Excel • PowerPoint • AI Tools</p>
+</footer>
+
+<script>
+function toggle(el){
+ const content=el.nextElementSibling;
+ const icon=el.querySelector("span");
+ const open=content.style.display!=="none";
+ content.style.display=open?"none":"block";
+ icon.textContent=open?"+":"−";
+}
+document.querySelectorAll(".module-content").forEach(x=>x.style.display="none");
+
+const checks=document.querySelectorAll('#checklist input');
+const progress=document.getElementById('progress');
+const progressText=document.getElementById('progressText');
+checks.forEach((c,i)=>{
+ c.checked=localStorage.getItem("officeAI_"+i)==="1";
+ c.addEventListener("change",()=>{
+   localStorage.setItem("officeAI_"+i,c.checked?"1":"0");
+   updateProgress();
+ });
+});
+function updateProgress(){
+ const done=[...checks].filter(c=>c.checked).length;
+ const pct=Math.round(done/checks.length*100);
+ progress.style.width=pct+"%";
+ progressText.textContent=pct+"% Completed";
+}
+updateProgress();
+</script>
+</body>
+</html>

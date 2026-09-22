@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodeLearn - Learn to Code Like W3Schools</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #04AA6D 0%, #05b372 100%);
+            color: white;
+            padding: 15px 20px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        header .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        header h1 {
+            font-size: 24px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        header nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 20px;
+            font-size: 14px;
+        }
+        
+        header nav a:hover {
+            opacity: 0.8;
+        }
+        
+        /* Main Container */
+        .main-wrapper {
+            display: flex;
+            max-width: 1400px;
+            margin: 0 auto;
+            min-height: calc(100vh - 60px);
+        }
+        
+        /* Sidebar */
+        .sidebar {
+            width: 280px;
+            background: white;
+            border-right: 1px solid #ddd;
+            overflow-y: auto;
+            padding: 20px 0;
+            position: sticky;
+            top: 60px;
+            height: calc(100vh - 60px);
+        }
+        
+        .sidebar-section {
+            margin-bottom: 20px;
+        }
+        
+        .sidebar-section h3 {
+            padding: 10px 20px;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #999;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+        
+        .sidebar-item {
+            padding: 10px 20px;
+            cursor: pointer;
+            border-left: 3px solid transparent;
+            transition: all 0.3s ease;
+            font-size: 14px;
+            color: #333;
+        }
+        
+        .sidebar-item:hover {
+            background: #f0f0f0;
+            border-left-color: #04AA6D;
+            color: #04AA6D;
+        }
+        
+        .sidebar-item.active {
+            background: #e8f5ee;
+            border-left-color: #04AA6D;
+            color: #04AA6D;
+            font-weight: 600;
+        }
+        
+        /* Main Content */
+        .content {
+            flex: 1;
+            padding: 40px;
+            background: white;
+            margin: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        
+        .content h2 {
+            font-size: 32px;
+            margin-bottom: 20px;
+            color: #000;
+        }
+        
+        .content p {
+            line-height: 1.8;
+            margin-bottom: 15px;
+            color: #555;
+        }
+        
+        .content h3 {
+            font-size: 20px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            color: #000;
+        }
+        
+        .content h4 {
+            font-size: 16px;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            color: #000;
+        }
+        
+        /* Example Box */
+        .example {
+            background: #f9f9f9;
+            border-left: 4px solid #04AA6D;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        
+        .example-label {
+            color: #04AA6D;
+            font-weight: 700;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+        
+        .code-block {
+            background: #f1f1f1;
+            border: 1px solid #ddd;
+            padding: 15px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            overflow-x: auto;
+            line-height: 1.5;
+            color: #000;
+        }
+        
+        /* Try It Yourself */
+        .try-it-yourself {
+            background: #f9f9f9;
+            border: 2px solid #04AA6D;
+            border-radius: 4px;
+            overflow: hidden;
+            margin: 30px 0;
+        }
+        
+        .try-header {
+            background: #04AA6D;
+            color: white;
+            padding: 12px 15px;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .try-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+        }
+        
+        .try-editor {
+            padding: 15px;
+            border-right: 1px solid #ddd;
+        }
+        
+        .try-editor textarea {
+            width: 100%;
+            height: 300px;
+            padding: 10px;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            resize: vertical;
+        }
+        
+        .try-preview {
+            padding: 15px;
+            background: white;
+            border-left: 1px solid #ddd;
+        }
+        
+        .try-preview iframe {
+            width: 100%;
+            height: 300px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        
+        .run-btn {
+            background: #04AA6D;
+            color: white;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 13px;
+        }
+        
+        .run-btn:hover {
+            background: #059862;
+        }
+        
+        /* Note Box */
+        .note {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        
+        .note strong {
+            color: #ff9800;
+        }
+        
+        /* Exercise */
+        .exercise {
+            background: #e3f2fd;
+            border-left: 4px solid #2196F3;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        
+        .exercise-label {
+            color: #2196F3;
+            font-weight: 700;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+        
+        /* Navigation */
+        .nav-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #ddd;
+        }
+        
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-prev {
+            background: #f0f0f0;
+            color: #333;
+        }
+        
+        .btn-prev:hover {
+            background: #e0e0e0;
+        }
+        
+        .btn-next {
+            background: #04AA6D;
+            color: white;
+            margin-left: auto;
+        }
+        
+        .btn-next:hover {
+            background: #059862;
+        }
+        
+        /* Progress Bar */
+        .progress-bar {
+            width: 100%;
+            height: 4px;
+            background: #ddd;
+            border-radius: 2px;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+        
+        .progress {
+            height: 100%;
+            background: #04AA6D;
+            transition: width 0.3s ease;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .main-wrapper {
+                flex-direction: column;
+            }
+            
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: static;
+                border-right: none;
+                border-bottom: 1px solid #ddd;
+                padding: 10px 0;
+            }
+            
+            .content {
+                margin: 10px;
+            }
+            
+            .try-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .try-editor {
+                border-right: none;
+                border-bottom: 1px solid #ddd;
+            }
+        }
+        
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <h1>
+                <i class="fas fa-book-open"></i>
+                CodeLearn
+            </h1>
+            <nav>
+                <a href="#" onclick="showSection('home')">Home</a>
+                <a href="#" onclick="showSection('tutorials')">Tutorials</a>
+                <a href="#" onclick="showSection('exercises')">Exercises</a>
+                <a href="#" onclick="showSection('references')">References</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <div class="main-wrapper">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-section">
+                <h3>HTML Tutorial</h3>
+                <div class="sidebar-item active" onclick="loadLesson('html1')">
+                    <i class="fas fa-play"></i> What is HTML?
+                </div>
+                <div class="sidebar-item" onclick="loadLesson('html2')">
+                    <i class="fas fa-play"></i> HTML Elements
+                </div>
+                <div class="sidebar-item" onclick="loadLesson('html3')">
+                    <i class="fas fa-play"></i> HTML Attributes
+                </div>
+                <div class="sidebar-item" onclick="loadLesson('html4')">
+                    <i class="fas fa-play"></i> HTML Headings
+                </div>
+                <div class="sidebar-item" onclick="loadLesson('html5')">
+                    <i class="fas fa-play"></i> HTML Paragraphs
+                </div>
+            </div>
+
+            <div class="sidebar-section">
+                <h3>CSS Tutorial</h3>
+                <div class="sidebar-item" onclick="loadLesson('css1')">
+                    <i class="fas fa-play"></i> What is CSS?
+                </div>
+                <div class="sidebar-item" onclick="loadLesson('css2')">
+                    <i class="fas fa-play"></i> CSS Syntax
+                </div>
+                <div class="sidebar-item" onclick="loadLesson('css3')">
+                    <i class="fas fa-play"></i> CSS Selectors
+                </div>
+            </div>
+
+            <div class="sidebar-section">
+                <h3>JavaScript Tutorial</h3>
+                <div class="sidebar-item" onclick="loadLesson('js1')">
+                    <i class="fas fa-play"></i> What is JavaScript?
+                </div>
+                <div class="sidebar-item" onclick="loadLesson('js2')">
+                    <i class="fas fa-play"></i> JS Variables
+                </div>
+            </div>
+        </aside>
+
+        <!-- Content Area -->
+        <main class="content" id="content">
+            <!-- Progress Bar -->
+            <div class="progress-bar">
+                <div class="progress" id="progressBar" style="width: 0%;"></div>
+            </div>
+
+            <!-- HTML1: What is HTML? -->
+            <div id="lesson-html1" class="lesson">
+                <h2>What is HTML?</h2>
+                
+                <p><strong>HTML</strong> stands for <strong>HyperText Markup Language</strong>. It is the standard markup language for creating web pages.</p>
+
+                <h3>What is HTML Used For?</h3>
+                <p>HTML is used to:</p>
+                <ul style="margin-left: 20px; line-height: 1.8;">
+                    <li>Create the structure of web pages</li>
+                    <li>Display text, images, and multimedia</li>
+                    <li>Create forms and input fields</li>
+                    <li>Create links between pages</li>
+                </ul>
+
+                <div class="example">
+                    <div class="example-label">EXAMPLE</div>
+                    <div class="code-block">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;title&gt;My First Page&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;Hello World!&lt;/h1&gt;
+  &lt;p&gt;This is my first web page.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</div>
+                </div>
+
+                <h3>Try it Yourself</h3>
+                <div class="try-it-yourself">
+                    <div class="try-header">
+                        <span>✏️ Edit the Code Below</span>
+                        <button class="run-btn" onclick="runCode('html1')">▶ Run</button>
+                    </div>
+                    <div class="try-container">
+                        <div class="try-editor">
+                            <textarea id="code-html1">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;title&gt;My Page&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;Welcome!&lt;/h1&gt;
+  &lt;p&gt;Edit this code&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</textarea>
+                        </div>
+                        <div class="try-preview">
+                            <iframe id="preview-html1"></iframe>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="note">
+                    <strong>💡 Note:</strong> Always use semantic HTML. It makes your code cleaner and more accessible to screen readers and search engines.
+                </div>
+
+                <div class="exercise">
+                    <div class="exercise-label">📝 EXERCISE</div>
+                    <p>Try to modify the HTML code to add your own heading and paragraph text.</p>
+                </div>
+
+                <div class="nav-buttons">
+                    <button class="btn btn-prev" onclick="prevLesson()">← Previous</button>
+                    <button class="btn btn-next" onclick="nextLesson()">Next →</button>
+                </div>
+            </div>
+
+            <!-- HTML2: Elements -->
+            <div id="lesson-html2" class="lesson hidden">
+                <h2>HTML Elements</h2>
+                
+                <p>An HTML element is defined by a start tag, some content, and an end tag.</p>
+
+                <h3>HTML Element Structure</h3>
+                <div class="code-block">&lt;tagname&gt;Content goes here...&lt;/tagname&gt;</div>
+
+                <h3>Examples of Common Elements</h3>
+                <div class="example">
+                    <div class="example-label">EXAMPLE</div>
+                    <div class="code-block">&lt;h1&gt;This is a heading&lt;/h1&gt;
+&lt;p&gt;This is a paragraph.&lt;/p&gt;
+&lt;a href="https://google.com"&gt;This is a link&lt;/a&gt;
+&lt;img src="image.jpg" alt="Description"&gt;</div>
+                </div>
+
+                <h3>Try it Yourself</h3>
+                <div class="try-it-yourself">
+                    <div class="try-header">
+                        <span>✏️ Edit the Code Below</span>
+                        <button class="run-btn" onclick="runCode('html2')">▶ Run</button>
+                    </div>
+                    <div class="try-container">
+                        <div class="try-editor">
+                            <textarea id="code-html2">&lt;h1&gt;Heading 1&lt;/h1&gt;
+&lt;h2&gt;Heading 2&lt;/h2&gt;
+&lt;p&gt;This is a paragraph.&lt;/p&gt;
+&lt;strong&gt;Bold text&lt;/strong&gt;
+&lt;em&gt;Italic text&lt;/em&gt;</textarea>
+                        </div>
+                        <div class="try-preview">
+                            <iframe id="preview-html2"></iframe>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="nav-buttons">
+                    <button class="btn btn-prev" onclick="prevLesson()">← Previous</button>
+                    <button class="btn btn-next" onclick="nextLesson()">Next →</button>
+                </div>
+            </div>
+
+            <!-- HTML3: Attributes -->
+            <div id="lesson-html3" class="lesson hidden">
+                <h2>HTML Attributes</h2>
+                
+                <p>HTML attributes provide additional information about HTML elements.</p>
+
+                <h3>Attribute Structure</h3>
+                <div class="code-block">&lt;tag attribute="value"&gt;Content&lt;/tag&gt;</div>
+
+                <h3>Common Attributes</h3>
+                <ul style="margin-left: 20px; line-height: 1.8;">
+                    <li><strong>href</strong> - Specifies the URL for links</li>
+                    <li><strong>src</strong> - Specifies the source of an image</li>
+                    <li><strong>alt</strong> - Alternative text for images</li>
+                    <li><strong>style</strong> - Inline CSS styles</li>
+                    <li><strong>class</strong> - CSS class name</li>
+                    <li><strong>id</strong> - Unique identifier</li>
+                </ul>
+
+                <div class="example">
+                    <div class="example-label">EXAMPLE</div>
+                    <div class="code-block">&lt;a href="https://google.com"&gt;Visit Google&lt;/a&gt;
+&lt;img src="photo.jpg" alt="My Photo" width="300"&gt;
+&lt;p style="color: red;"&gt;Red Text&lt;/p&gt;
+&lt;div id="main"&gt;Main Content&lt;/div&gt;</div>
+                </div>
+
+                <h3>Try it Yourself</h3>
+                <div class="try-it-yourself">
+                    <div class="try-header">
+                        <span>✏️ Edit the Code Below</span>
+                        <button class="run-btn" onclick="runCode('html3')">▶ Run</button>
+                    </div>
+                    <div class="try-container">
+                        <div class="try-editor">
+                            <textarea id="code-html3">&lt;a href="https://www.google.com"&gt;Click here&lt;/a&gt;
+&lt;p style="color: blue; font-size: 20px;"&gt;Styled Paragraph&lt;/p&gt;
+&lt;p title="This is a tooltip"&gt;Hover over me&lt;/p&gt;</textarea>
+                        </div>
+                        <div class="try-preview">
+                            <iframe id="preview-html3"></iframe>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="nav-buttons">
+                    <button class="btn btn-prev" onclick="prevLesson()">← Previous</button>
+                    <button class="btn btn-next" onclick="nextLesson()">Next →</button>
+                </div>
+            </div>
+
+            <!-- HTML4: Headings -->
+            <div id="lesson-html4" class="lesson hidden">
+                <h2>HTML Headings</h2>
+                
+                <p>HTML headings are used to define headings on a page. There are 6 levels: h1 to h6.</p>
+
+                <h3>Heading Importance</h3>
+                <ul style="margin-left: 20px; line-height: 1.8;">
+                    <li><strong>&lt;h1&gt;</strong> - Most important (main title)</li>
+                    <li><strong>&lt;h2&gt;</strong> - Less important</li>
+                    <li><strong>&lt;h3&gt; to &lt;h6&gt;</strong> - Progressively less important</li>
+                </ul>
+
+                <div class="example">
+                    <div class="example-label">EXAMPLE</div>
+                    <div class="code-block">&lt;h1&gt;Main Heading&lt;/h1&gt;
+&lt;h2&gt;Subheading&lt;/h2&gt;
+&lt;h3&gt;Sub-subheading&lt;/h3&gt;</div>
+                </div>
+
+                <h3>Try it Yourself</h3>
+                <div class="try-it-yourself">
+                    <div class="try-header">
+                        <span>✏️ Edit the Code Below</span>
+                        <button class="run-btn" onclick="runCode('html4')">▶ Run</button>
+                    </div>
+                    <div class="try-container">
+                        <div class="try-editor">
+                            <textarea id="code-html4">&lt;h1&gt;Heading 1&lt;/h1&gt;
+&lt;h2&gt;Heading 2&lt;/h2&gt;
+&lt;h3&gt;Heading 3&lt;/h3&gt;
+&lt;h4&gt;Heading 4&lt;/h4&gt;
+&lt;h5&gt;Heading 5&lt;/h5&gt;
+&lt;h6&gt;Heading 6&lt;/h6&gt;</textarea>
+                        </div>
+                        <div class="try-preview">
+                            <iframe id="preview-html4"></iframe>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="nav-buttons">
+                    <button class="btn btn-prev" onclick="prevLesson()">← Previous</button>
+                    <button class="btn btn-next" onclick="nextLesson()">Next →</button>
+                </div>
+            </div>
+
+            <!-- HTML5: Paragraphs -->
+            <div id="lesson-html5" class="lesson hidden">
+                <h2>HTML Paragraphs</h2>
+                
+                <p>The &lt;p&gt; tag defines a paragraph. Browsers automatically add space before and after a paragraph.</p>
+
+                <div class="example">
+                    <div class="example-label">EXAMPLE</div>
+                    <div class="code-block">&lt;p&gt;This is a paragraph.&lt;/p&gt;
+&lt;p&gt;This is another paragraph.&lt;/p&gt;</div>
+                </div>
+
+                <h3>Formatting Text Within Paragraphs</h3>
+                <ul style="margin-left: 20px; line-height: 1.8;">
+                    <li><strong>&lt;strong&gt;</strong> - Bold text with strong importance</li>
+                    <li><strong>&lt;em&gt;</strong> - Italic text with emphasis</li>
+                    <li><strong>&lt;br&gt;</strong> - Line break</li>
+                    <li><strong>&lt;hr&gt;</strong> - Horizontal rule</li>
+                </ul>
+
+                <h3>Try it Yourself</h3>
+                <div class="try-it-yourself">
+                    <div class="try-header">
+                        <span>✏️ Edit the Code Below</span>
+                        <button class="run-btn" onclick="runCode('html5')">▶ Run</button>
+                    </div>
+                    <div class="try-container">
+                        <div class="try-editor">
+                            <textarea id="code-html5">&lt;p&gt;This is a paragraph.&lt;/p&gt;
+&lt;p&gt;This is &lt;strong&gt;bold&lt;/strong&gt; text.&lt;/p&gt;
+&lt;p&gt;This is &lt;em&gt;italic&lt;/em&gt; text.&lt;/p&gt;
+&lt;p&gt;Line 1&lt;br&gt;Line 2&lt;/p&gt;</textarea>
+                        </div>
+                        <div class="try-preview">
+                            <iframe id="preview-html5"></iframe>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="nav-buttons">
+                    <button class="btn btn-prev" onclick="prevLesson()">← Previous</button>
+                    <button class="btn btn-next" onclick="nextLesson()">Next →</button>
+                </div>
+            </div>
+
+            <!-- CSS1: What is CSS? -->
+            <div id="lesson-css1" class="lesson hidden">
+                <h2>What is CSS?</h2>
+                
+                <p><strong>CSS</strong> stands for <strong>Cascading Style Sheets</strong>. It is used to style and layout web pages.</p>
+
+                <h3>Three Ways to Write CSS</h3>
+                <ul style="margin-left: 20px; line-height: 1.8;">
+                    <li><strong>Inline CSS</strong> - Style attribute on HTML elements</li>
+                    <li><strong>Internal CSS</strong> - Style tag in the head section</li>
+                    <li><strong>External CSS</strong> - Separate CSS file linked to HTML</li>
+                </ul>
+
+                <div class="example">
+                    <div class="example-label">EXAMPLE</div>
+                    <div class="code-block">&lt;style&gt;
+  h1 {
+    color: red;
+    font-size: 32px;
+  }
+  p {
+    color: blue;
+  }
+&lt;/style&gt;</div>
+                </div>
+
+                <h3>Try it Yourself</h3>
+                <div class="try-it-yourself">
+                    <div class="try-header">
+                        <span>✏️ Edit the Code Below</span>
+                        <button class="run-btn" onclick="runCode('css1')">▶ Run</button>
+                    </div>
+                    <div class="try-container">
+                        <div class="try-editor">
+                            <textarea id="code-css1">&lt;style&gt;
+  h1 {
+    color: #04AA6D;
+    text-align: center;
+  }
+  p {
+    color: #555;
+    font-size: 16px;
+  }
+&lt;/style&gt;
+
+&lt;h1&gt;Styled Heading&lt;/h1&gt;
+&lt;p&gt;This paragraph has CSS styles applied.&lt;/p&gt;</textarea>
+                        </div>
+                        <div class="try-preview">
+                            <iframe id="preview-css1"></iframe>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="nav-buttons">
+                    <button class="btn btn-prev" onclick="prevLesson()">← Previous</button>
+                    <button class="btn btn-next" onclick="nextLesson()">Next →</button>
+                </div>
+            </div>
+
+            <!-- JavaScript1: What is JavaScript? -->
+            <div id="lesson-js1" class="lesson hidden">
+                <h2>What is JavaScript?</h2>
+                
+                <p><strong>JavaScript</strong> is a programming language that makes web pages interactive. It can change HTML content, styles, and respond to user actions.</p>
+
+                <div class="example">
+                    <div class="example-label">EXAMPLE</div>
+                    <div class="code-block">&lt;script&gt;
+  document.getElementById("demo").innerHTML = "Hello JavaScript!";
+&lt;/script&gt;</div>
+                </div>
+
+                <h3>Try it Yourself</h3>
+                <div class="try-it-yourself">
+                    <div class="try-header">
+                        <span>✏️ Edit the Code Below</span>
+                        <button class="run-btn" onclick="runCode('js1')">▶ Run</button>
+                    </div>
+                    <div class="try-container">
+                        <div class="try-editor">
+                            <textarea id="code-js1">&lt;button onclick="alert('Hello! Welcome to JavaScript!')"&gt;
+  Click Me
+&lt;/button&gt;
+
+&lt;p id="demo"&gt;This text will change.&lt;/p&gt;
+
+&lt;script&gt;
+  document.getElementById("demo").innerHTML = "Text changed by JavaScript!";
+&lt;/script&gt;</textarea>
+                        </div>
+                        <div class="try-preview">
+                            <iframe id="preview-js1"></iframe>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="nav-buttons">
+                    <button class="btn btn-prev" onclick="prevLesson()">← Previous</button>
+                    <button class="btn btn-next" onclick="nextLesson()">Next →</button>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <script>
+        const lessons = [
+            'html1', 'html2', 'html3', 'html4', 'html5', 'css1', 'js1'
+        ];
+        let currentLessonIndex = 0;
+
+        function loadLesson(lessonId) {
+            // Hide all lessons
+            document.querySelectorAll('.lesson').forEach(lesson => {
+                lesson.classList.add('hidden');
+            });
+
+            // Show selected lesson
+            document.getElementById(`lesson-${lessonId}`).classList.remove('hidden');
+
+            // Update sidebar active state
+            document.querySelectorAll('.sidebar-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            event.target.closest('.sidebar-item').classList.add('active');
+
+            // Update current lesson index
+            currentLessonIndex = lessons.indexOf(lessonId);
+
+            // Update progress
+            updateProgress();
+
+            // Run the code if it exists
+            setTimeout(() => runCode(lessonId), 100);
+        }
+
+        function nextLesson() {
+            if (currentLessonIndex < lessons.length - 1) {
+                const nextLesson = lessons[currentLessonIndex + 1];
+                document.querySelector(`[onclick="loadLesson('${nextLesson}')"]`).click();
+            } else {
+                alert('You have reached the end of the tutorials!');
+            }
+        }
+
+        function prevLesson() {
+            if (currentLessonIndex > 0) {
+                const prevLesson = lessons[currentLessonIndex - 1];
+                document.querySelector(`[onclick="loadLesson('${prevLesson}')"]`).click();
+            }
+        }
+
+        function runCode(lessonId) {
+            const codeInput = document.getElementById(`code-${lessonId}`);
+            const preview = document.getElementById(`preview-${lessonId}`);
+
+            if (!codeInput || !preview) return;
+
+            const code = codeInput.value;
+            const doc = preview.contentDocument || preview.contentWindow.document;
+            doc.open();
+            doc.write(code);
+            doc.close();
+        }
+
+        function updateProgress() {
+            const progress = ((currentLessonIndex + 1) / lessons.length) * 100;
+            document.getElementById('progressBar').style.width = progress + '%';
+        }
+
+        // Initialize
+        window.addEventListener('load', () => {
+            loadLesson('html1');
+        });
+    </script>
+</body>
+</html>

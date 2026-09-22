@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Data Analyst - Job Ready Course</title>
+<style>
+:root{--p:#2563eb;--s:#7c3aed;--dark:#0f172a;--text:#334155;--muted:#64748b;--bg:#f1f5f9;--white:#fff;--border:#e2e8f0}
+*{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
+body{font-family:Segoe UI,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+.container{width:min(1120px,92%);margin:auto}
+header{position:sticky;top:0;z-index:10;background:#ffffffee;backdrop-filter:blur(10px);border-bottom:1px solid var(--border)}
+.nav{height:70px;display:flex;align-items:center;justify-content:space-between}
+.brand{display:flex;align-items:center;gap:10px;font-weight:800;color:var(--dark);font-size:19px}
+.logo-placeholder{width:42px;height:42px;border:2px dashed #94a3b8;border-radius:10px;display:grid;place-items:center;font-size:9px;color:#64748b}
+.nav a{margin-left:20px;font-size:14px;font-weight:600}.nav a:hover{color:var(--p)}
+.hero{padding:75px 0;background:linear-gradient(135deg,#eff6ff,#f5f3ff,#fff)}
+.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:40px;align-items:center}
+.badge{display:inline-block;padding:7px 14px;border-radius:30px;background:#dbeafe;color:#1d4ed8;font-size:12px;font-weight:800}
+h1{font-size:clamp(40px,6vw,68px);line-height:1.05;color:var(--dark);margin:18px 0}
+h1 span{color:var(--p)}.hero p{font-size:18px;color:var(--muted);margin-bottom:25px}
+.btn{display:inline-block;padding:12px 20px;border-radius:10px;background:var(--dark);color:white;font-weight:700;margin-right:8px}.btn.primary{background:var(--p)}
+.analytics-card{background:white;border:1px solid var(--border);padding:25px;border-radius:24px;box-shadow:0 15px 40px #0f172a12}
+.chart{height:190px;display:flex;align-items:end;gap:10px;border-bottom:1px solid var(--border);padding:20px 10px}
+.bar{flex:1;height:var(--h);background:linear-gradient(#7c3aed,#2563eb);border-radius:7px 7px 0 0}
+.mini{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:15px}.mini div{background:#f8fafc;padding:10px;text-align:center;border-radius:10px}.mini b{display:block;color:var(--dark)}
+.section{padding:70px 0}.title{text-align:center;max-width:750px;margin:0 auto 38px}.title h2{font-size:34px;color:var(--dark)}.title p{color:var(--muted)}
+.overview{display:grid;grid-template-columns:repeat(6,1fr);gap:14px}.info{background:white;border:1px solid var(--border);border-radius:15px;padding:18px 10px;text-align:center}.info .icon{font-size:25px}.info b{display:block;color:var(--dark);font-size:13px}.info small{color:var(--muted)}
+.modules{max-width:950px;margin:auto;display:grid;gap:14px}
+details{background:white;border:1px solid var(--border);border-radius:15px;overflow:hidden}summary{list-style:none;cursor:pointer;padding:19px 23px;font-size:17px;font-weight:800;color:var(--dark);display:flex;justify-content:space-between}summary::-webkit-details-marker{display:none}summary:after{content:'+';color:var(--p);font-size:23px}details[open] summary:after{content:'−'}
+.module-body{border-top:1px solid var(--border);padding:18px 25px}.module-body ul{display:grid;grid-template-columns:1fr 1fr;gap:7px 30px;padding-left:20px}
+.projects{display:grid;grid-template-columns:1fr 1fr;gap:20px}.project{background:white;border:1px solid var(--border);border-radius:18px;padding:24px;transition:.25s}.project:hover{transform:translateY(-5px);box-shadow:0 15px 35px #0f172a12}.project span{font-size:12px;color:var(--p);font-weight:800}.project h3{color:var(--dark);margin:6px 0}.tools{display:flex;gap:7px;flex-wrap:wrap;margin-top:14px}.tool{background:#eef2ff;color:#4338ca;border-radius:20px;padding:5px 10px;font-size:11px;font-weight:700}
+table{width:100%;border-collapse:collapse;background:white;border-radius:15px;overflow:hidden}th,td{text-align:left;padding:15px;border-bottom:1px solid var(--border)}th{background:#eff6ff;color:#1e40af}
+.checks{display:grid;grid-template-columns:1fr 1fr;gap:12px;max-width:800px;margin:auto}.check{background:white;border:1px solid var(--border);padding:13px 16px;border-radius:11px}.check input{accent-color:var(--p);margin-right:9px}
+.progress-wrap{max-width:800px;height:9px;background:#e2e8f0;border-radius:20px;margin:20px auto 0;overflow:hidden}.progress{height:100%;width:0;background:linear-gradient(90deg,var(--p),var(--s));transition:.3s}
+.cta{background:linear-gradient(135deg,#172554,#4c1d95);color:white;text-align:center;padding:55px;border-radius:25px}.cta h2{font-size:35px}.cta p{margin:10px 0 22px;opacity:.85}.cta .btn{background:white;color:#172554}
+footer{background:var(--dark);color:#cbd5e1;text-align:center;padding:28px}.top{position:fixed;right:20px;bottom:20px;background:var(--p);color:white;width:44px;height:44px;border-radius:50%;display:grid;place-items:center}
+@media(max-width:900px){.hero-grid{grid-template-columns:1fr}.overview{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:650px){.navlinks{display:none}.overview,.projects,.checks{grid-template-columns:1fr}.module-body ul{grid-template-columns:1fr}.section{padding:50px 0}.cta{padding:35px 20px}}
+@media print{header,.btn,.top{display:none}.hero{padding:25px}.section{padding:25px}details{break-inside:avoid}details .module-body{display:block}}
+</style>
+</head>
+<body>
+<header><div class="container nav">
+<a class="brand" href="#top"><div class="logo-placeholder">LOGO</div> DATA ANALYST</a>
+<div class="navlinks"><a href="#syllabus">Syllabus</a><a href="#projects">Projects</a><a href="#roadmap">Roadmap</a><a href="#career">Career</a></div>
+</div></header>
+
+<section class="hero" id="top"><div class="container hero-grid">
+<div><span class="badge">JOB-READY • PRACTICAL • PROJECT BASED</span>
+<h1>Become a <span>Data Analyst</span></h1>
+<p>Master Excel, SQL, Python, Power BI, Statistics and Generative AI through practical learning and real-world projects.</p>
+<a class="btn primary" href="#syllabus">Explore Syllabus ↓</a><a class="btn" href="#projects">View Projects</a></div>
+<div class="analytics-card"><b style="font-size:18px;color:#0f172a">Analytics Learning Journey</b>
+<div class="chart"><i class="bar" style="--h:40%"></i><i class="bar" style="--h:55%"></i><i class="bar" style="--h:70%"></i><i class="bar" style="--h:84%"></i><i class="bar" style="--h:96%"></i></div>
+<div class="mini"><div><b>6+</b>Skills</div><div><b>5</b>Projects</div><div><b>1</b>Capstone</div></div></div>
+</div></section>
+
+<section class="section"><div class="container"><div class="title"><h2>Course Overview</h2><p>A complete path from beginner to job-ready Data Analyst.</p></div>
+<div class="overview">
+<div class="info"><div class="icon">⏱️</div><b>Duration</b><small>4–6 Months</small></div><div class="info"><div class="icon">📚</div><b>Level</b><small>Beginner → Advanced</small></div><div class="info"><div class="icon">📊</div><b>Excel</b><small>Advanced</small></div><div class="info"><div class="icon">🗄️</div><b>SQL</b><small>Advanced</small></div><div class="info"><div class="icon">🐍</div><b>Python</b><small>Pandas + EDA</small></div><div class="info"><div class="icon">📈</div><b>Power BI</b><small>DAX + Dashboards</small></div>
+</div></div></section>
+
+<section class="section" id="syllabus" style="background:white"><div class="container"><div class="title"><h2>📚 Module-wise Syllabus</h2><p>Click a module to expand the detailed topics.</p></div><div class="modules">
+<details open><summary>01. Data Analytics Fundamentals</summary><div class="module-body"><ul><li>What is Data Analytics?</li><li>Data Analyst vs Data Scientist vs Data Engineer</li><li>Descriptive, Diagnostic, Predictive & Prescriptive Analytics</li><li>Data types, datasets, KPIs and metrics</li><li>Business questions and requirements</li><li>Analytics workflow: Collect → Clean → Analyze → Visualize → Communicate</li></ul></div></details>
+<details><summary>02. Advanced Microsoft Excel</summary><div class="module-body"><ul><li>Excel Tables, sorting, filtering and validation</li><li>SUM, AVERAGE, COUNT, IF, AND, OR, IFERROR</li><li>SUMIF/SUMIFS, COUNTIF/COUNTIFS, AVERAGEIFS</li><li>VLOOKUP, XLOOKUP, INDEX-MATCH, XMATCH</li><li>Text & Date functions</li><li>Data cleaning, duplicates and missing values</li><li>Pivot Tables, Pivot Charts and Slicers</li><li>Power Query and Power Pivot</li><li>Interactive Excel dashboards</li></ul></div></details>
+<details><summary>03. SQL for Data Analysis</summary><div class="module-body"><ul><li>Database, tables, keys and relationships</li><li>SELECT, WHERE, DISTINCT, ORDER BY</li><li>LIKE, IN, BETWEEN and NULL handling</li><li>COUNT, SUM, AVG, MIN, MAX</li><li>GROUP BY, HAVING and CASE WHEN</li><li>INNER, LEFT, RIGHT, FULL, SELF and CROSS JOIN</li><li>UNION and UNION ALL</li><li>Subqueries and Views</li><li>CTEs and Window Functions</li><li>ROW_NUMBER, RANK, DENSE_RANK, LAG, LEAD</li></ul></div></details>
+<details><summary>04. Statistics for Data Analysis</summary><div class="module-body"><ul><li>Mean, Median, Mode and Range</li><li>Variance and Standard Deviation</li><li>Percentiles, Quartiles and IQR</li><li>Outlier detection</li><li>Probability and Sampling</li><li>Correlation vs Causation</li><li>Confidence Intervals</li><li>Hypothesis Testing and P-value</li><li>T-Test, Chi-Square and ANOVA</li><li>Regression basics</li></ul></div></details>
+<details><summary>05. Python for Data Analysis</summary><div class="module-body"><ul><li>Python fundamentals, conditions, loops and functions</li><li>Lists, Tuples, Sets and Dictionaries</li><li>NumPy arrays and operations</li><li>Pandas Series and DataFrames</li><li>CSV/Excel import and data inspection</li><li>Filtering, sorting and missing values</li><li>GroupBy, Merge, Join, Concat and Pivot</li><li>Matplotlib and Seaborn</li><li>Exploratory Data Analysis (EDA)</li></ul></div></details>
+<details><summary>06. Power BI & DAX</summary><div class="module-body"><ul><li>Power BI Desktop and data sources</li><li>Power Query cleaning and transformation</li><li>Merge and Append queries</li><li>Data modeling, relationships and Star Schema</li><li>Fact & Dimension tables</li><li>DAX calculated columns and measures</li><li>CALCULATE, FILTER, SUMX, COUNTX</li><li>MTD, YTD and previous-year analysis</li><li>KPI cards, charts, slicers and drill-through</li><li>Bookmarks, tooltips, publishing and sharing</li></ul></div></details>
+<details><summary>07. AI for Data Analysts 🤖</summary><div class="module-body"><ul><li>Generative AI fundamentals</li><li>Prompt Engineering for analytics</li><li>AI for Excel formulas, SQL and Python</li><li>AI-assisted data cleaning and insights</li><li>AI-assisted reports and documentation</li><li>Verify AI output and avoid hallucinations</li><li>Data privacy and responsible AI</li></ul></div></details>
+<details><summary>08. Business Intelligence & Data Storytelling</summary><div class="module-body"><ul><li>Business requirements and KPI selection</li><li>Choosing the right chart</li><li>Dashboard design principles</li><li>Finding trends, patterns and anomalies</li><li>Actionable recommendations</li><li>Presenting insights to management</li></ul></div></details>
+</div></div></section>
+
+<section class="section" id="projects"><div class="container"><div class="title"><h2>💻 Real-World Projects</h2><p>Build portfolio-ready projects.</p></div><div class="projects">
+<div class="project"><span>PROJECT 01</span><h3>Sales Analytics Dashboard</h3><p>Analyze sales, profit, products, customers, regions and monthly performance.</p><div class="tools"><b class="tool">Excel</b><b class="tool">Power BI</b></div></div>
+<div class="project"><span>PROJECT 02</span><h3>E-Commerce Analytics</h3><p>Analyze orders, customers, products, revenue and repeat customers.</p><div class="tools"><b class="tool">SQL</b><b class="tool">Power BI</b></div></div>
+<div class="project"><span>PROJECT 03</span><h3>HR Analytics Dashboard</h3><p>Study employee count, attrition, salary, departments and trends.</p><div class="tools"><b class="tool">Excel</b><b class="tool">Power BI</b></div></div>
+<div class="project"><span>PROJECT 04</span><h3>Python Data Analysis</h3><p>Clean a dataset, perform EDA, statistics and visualizations.</p><div class="tools"><b class="tool">Python</b><b class="tool">Pandas</b><b class="tool">Matplotlib</b></div></div>
+<div class="project" style="grid-column:1/-1"><span>FINAL CAPSTONE 🏆</span><h3>End-to-End Data Analytics Project</h3><p>Raw Data → Cleaning → SQL → Python EDA → Power BI Dashboard → Business Insights → Presentation.</p><div class="tools"><b class="tool">Excel</b><b class="tool">SQL</b><b class="tool">Python</b><b class="tool">Power BI</b><b class="tool">AI</b></div></div>
+</div></div></section>
+
+<section class="section" id="roadmap" style="background:white"><div class="container"><div class="title"><h2>🗓️ 6-Month Learning Roadmap</h2></div><table><thead><tr><th>Month</th><th>Focus</th><th>Outcome</th></tr></thead><tbody>
+<tr><td>1</td><td>Data Analytics + Excel</td><td>Excel analysis and dashboards</td></tr><tr><td>2</td><td>Advanced Excel + SQL Basics</td><td>Clean data and analytical queries</td></tr><tr><td>3</td><td>Advanced SQL + Statistics</td><td>Joins, CTEs, windows and statistics</td></tr><tr><td>4</td><td>Python + EDA</td><td>Analyze and visualize datasets</td></tr><tr><td>5</td><td>Power BI + DAX</td><td>Interactive BI dashboards</td></tr><tr><td>6</td><td>AI + Projects + Interviews</td><td>Capstone, portfolio and job preparation</td></tr>
+</tbody></table></div></section>
+
+<section class="section"><div class="container"><div class="title"><h2>🏆 Completion Checklist</h2><p>Progress is saved in your browser.</p></div><div class="checks" id="checklist">
+<label class="check"><input type="checkbox"> Excel Dashboard completed</label><label class="check"><input type="checkbox"> Advanced SQL completed</label><label class="check"><input type="checkbox"> Python EDA completed</label><label class="check"><input type="checkbox"> Power BI Dashboard completed</label><label class="check"><input type="checkbox"> AI Analytics task completed</label><label class="check"><input type="checkbox"> Final Capstone presented</label><label class="check"><input type="checkbox"> Resume + Portfolio prepared</label><label class="check"><input type="checkbox"> Mock Interview completed</label>
+</div><div class="progress-wrap"><div class="progress" id="progress"></div></div><p id="progressText" style="text-align:center;color:#64748b;font-size:13px;margin-top:7px">0% completed</p></div></section>
+
+<section class="section" id="career"><div class="container"><div class="cta"><h2>💼 Become Job Ready</h2><p>Resume • LinkedIn • Portfolio • SQL Tests • Case Studies • Mock Interviews • Project Presentation</p><a href="#top" class="btn">Back to Top ↑</a></div></div></section>
+<footer>© 2026 Data Analyst Course • Excel • SQL • Python • Power BI • Statistics • AI</footer>
+<a class="top" href="#top">↑</a>
+<script>
+const boxes=[...document.querySelectorAll('#checklist input')],bar=document.getElementById('progress'),txt=document.getElementById('progressText');
+const saved=JSON.parse(localStorage.getItem('daProgress')||'[]');
+boxes.forEach((b,i)=>{b.checked=!!saved[i];b.addEventListener('change',update)});
+function update(){let n=boxes.filter(b=>b.checked).length,p=Math.round(n/boxes.length*100);bar.style.width=p+'%';txt.textContent=p+'% completed';localStorage.setItem('daProgress',JSON.stringify(boxes.map(b=>b.checked)))}
+update();
+</script>
+</body></html>

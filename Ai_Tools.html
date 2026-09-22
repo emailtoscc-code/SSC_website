@@ -1,0 +1,531 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Tools & Prompt Engineering Course</title>
+  <style>
+    :root {
+      --bg: #0f172a;
+      --surface: #111827;
+      --surface-alt: #1f2937;
+      --text: #e2e8f0;
+      --muted: #94a3b8;
+      --accent: #38bdf8;
+      --accent-2: #7c3aed;
+      --border: rgba(148, 163, 184, 0.16);
+      --shadow: 0 20px 50px rgba(15, 23, 42, 0.35);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: radial-gradient(circle at top, rgba(56, 189, 248, 0.12), transparent 28%),
+                  radial-gradient(circle at bottom right, rgba(124, 58, 237, 0.10), transparent 24%),
+                  var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    .page {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 30px 24px 60px;
+    }
+
+    .header {
+      display: grid;
+      gap: 16px;
+      border: 1px solid var(--border);
+      background: rgba(15, 23, 42, 0.92);
+      box-shadow: var(--shadow);
+      padding: 26px;
+      border-radius: 24px;
+    }
+
+    .header h1 {
+      margin: 0;
+      font-size: clamp(2.4rem, 3vw, 3.2rem);
+      letter-spacing: -0.04em;
+    }
+
+    .header p {
+      margin: 0;
+      color: var(--muted);
+      max-width: 820px;
+      font-size: 1rem;
+    }
+
+    .grid {
+      display: grid;
+      gap: 28px;
+      grid-template-columns: 300px 1fr;
+      align-items: start;
+      margin-top: 32px;
+    }
+
+    .nav-panel {
+      position: sticky;
+      top: 24px;
+      align-self: start;
+      border: 1px solid var(--border);
+      background: rgba(15, 23, 42, 0.95);
+      padding: 22px;
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .nav-panel h2 {
+      margin-top: 0;
+      font-size: 1.1rem;
+      letter-spacing: 0.05em;
+      color: var(--accent);
+    }
+
+    .nav-panel ol {
+      margin: 16px 0 0;
+      padding-left: 18px;
+      color: var(--text);
+      font-size: 0.98rem;
+    }
+
+    .nav-panel a {
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    .nav-panel a:hover {
+      color: var(--accent);
+    }
+
+    .content {
+      display: grid;
+      gap: 30px;
+    }
+
+    section.card {
+      border: 1px solid var(--border);
+      border-radius: 30px;
+      background: rgba(15, 23, 42, 0.93);
+      padding: 28px;
+      box-shadow: var(--shadow);
+    }
+
+    section.card h2 {
+      margin-top: 0;
+      color: #ffffff;
+      font-size: clamp(1.8rem, 2.2vw, 2.2rem);
+    }
+
+    section.card p {
+      margin: 0 0 16px;
+      color: var(--muted);
+    }
+
+    .lesson {
+      margin: 24px 0;
+    }
+
+    .lesson h3 {
+      margin: 0 0 10px;
+      font-size: 1.18rem;
+      color: #f8fafc;
+    }
+
+    .lesson ul {
+      margin: 0 0 16px;
+      padding-left: 20px;
+      color: var(--text);
+    }
+
+    .lesson ul li {
+      margin-bottom: 10px;
+    }
+
+    .lesson img {
+      width: 100%;
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin: 18px 0;
+      border-radius: 18px;
+      border: 1px solid rgba(148, 163, 184, 0.14);
+    }
+
+    .lesson .caption {
+      font-size: 0.92rem;
+      color: var(--muted);
+      margin-top: -12px;
+      margin-bottom: 14px;
+    }
+
+    .highlight {
+      color: var(--accent);
+    }
+
+    .note {
+      border-left: 4px solid var(--accent);
+      background: rgba(56, 189, 248, 0.08);
+      color: #cbd5e1;
+      padding: 14px 18px;
+      border-radius: 14px;
+      margin: 14px 0 0;
+    }
+
+    .footer {
+      text-align: center;
+      padding-top: 20px;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    @media (max-width: 1080px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .nav-panel {
+        position: relative;
+        top: 0;
+      }
+    }
+
+    @media (max-width: 700px) {
+      .page {
+        padding: 20px 16px 40px;
+      }
+
+      .header, .nav-panel, section.card {
+        padding: 20px;
+      }
+
+      .lesson h3 {
+        font-size: 1.08rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <div class="header">
+      <div>
+        <p class="eyebrow" style="margin:0 0 10px; color: var(--accent); text-transform: uppercase; letter-spacing:0.15em; font-weight:700; font-size:0.82rem;">AI Course Overview</p>
+        <h1>AI Fundamentals, Prompt Engineering & Popular Tools</h1>
+      </div>
+      <p>Follow this structured AI learning page to understand the foundations, core concepts, prompt engineering best practices, and the most useful AI tools available today. Each section is built for beginners and practical use.</p>
+    </div>
+
+    <div class="grid">
+      <aside class="nav-panel">
+        <h2>Course sections</h2>
+        <ol>
+          <li><a href="#fundamentals">AI Fundamentals</a></li>
+          <li><a href="#core-concepts">Core AI Concepts</a></li>
+          <li><a href="#prompt-engineering">Prompt Engineering</a></li>
+          <li><a href="#popular-tools">Popular AI Tools</a></li>
+        </ol>
+        <div class="note">
+          Start with section 1 and move through each concept in order. Practice writing prompts while reviewing the tools section.
+        </div>
+      </aside>
+
+      <div class="content">
+        <section class="card" id="fundamentals">
+          <h2>Section 1: AI Fundamentals</h2>
+          <p>Learn what AI really means, how it evolved, where it impacts our lives today, and why ethics matters more than ever.</p>
+
+          <div class="lesson">
+            <h3>Introduction to Artificial Intelligence – What is AI?</h3>
+            <p class="caption">AI is the ability of machines to perform tasks that normally require human reasoning.</p>
+            <ul>
+              <li>AI is a collection of methods that allow computers to learn, reason, and act.</li>
+              <li>It includes systems that can recognize speech, translate languages, and make recommendations.</li>
+              <li>Modern AI combines data, algorithms, and computing power.</li>
+            </ul>
+            <img src="https://via.placeholder.com/900x360?text=What+is+AI" alt="What is AI" />
+          </div>
+
+          <div class="lesson">
+            <h3>Difference Between AI, Machine Learning, Deep Learning & Generative AI</h3>
+            <p class="caption">Understand the AI hierarchy from broad concepts to creative generation.</p>
+            <ul>
+              <li><strong>AI</strong> is the broad field of intelligent machines.</li>
+              <li><strong>Machine Learning</strong> uses data to train models automatically.</li>
+              <li><strong>Deep Learning</strong> uses neural networks with many layers.</li>
+              <li><strong>Generative AI</strong> creates new content like text, images, or code.</li>
+            </ul>
+            <img src="https://via.placeholder.com/900x360?text=AI+vs+ML+vs+DL+vs+Generative+AI" alt="AI categories" />
+          </div>
+
+          <div class="lesson">
+            <h3>History and Evolution of AI (Up to 2026)</h3>
+            <p class="caption">Track AI from early rule-based systems to modern generative and multimodal models.</p>
+            <ul>
+              <li>1950s–60s: early symbolic AI and logic-based programs.</li>
+              <li>1990s–2000s: the rise of machine learning and statistical models.</li>
+              <li>2010s: deep learning breakthrough with image recognition and NLP.</li>
+              <li>2020s: generative AI, large language models, and agent architectures.</li>
+            </ul>
+            <img src="https://via.placeholder.com/900x360?text=AI+History+Timeline" alt="AI history" />
+          </div>
+
+          <div class="lesson">
+            <h3>Real-World Applications of AI Today</h3>
+            <p class="caption">Explore how AI is already being used by businesses, healthcare, education, and creators.</p>
+            <ul>
+              <li>Content creation: writing assistants, image generation, video editing.</li>
+              <li>Productivity: automated workflows, virtual assistants, meeting summaries.</li>
+              <li>Data analysis: predictions, insights, anomaly detection.</li>
+              <li>Healthcare: diagnostics, personalized medicine, imaging analysis.</li>
+            </ul>
+            <img src="https://via.placeholder.com/900x360?text=AI+Applications+Today" alt="AI applications" />
+          </div>
+
+          <div class="lesson">
+            <h3>AI Ethics, Bias, Privacy, and Responsible AI</h3>
+            <p class="caption">A responsible AI learner knows how to spot bias and protect privacy.</p>
+            <ul>
+              <li>AI systems can reflect biases from their training data.</li>
+              <li>Responsible AI means fairness, transparency, and accountability.</li>
+              <li>Privacy requires careful handling of personal information.</li>
+              <li>Ethics includes evaluating how decisions impact people and society.</li>
+            </ul>
+            <img src="https://via.placeholder.com/900x360?text=AI+Ethics+and+Privacy" alt="AI ethics" />
+          </div>
+        </section>
+
+        <section class="card" id="core-concepts">
+          <h2>Section 2: Core AI Concepts</h2>
+          <p>Build a strong foundation in the core techniques and systems that power modern AI applications.</p>
+
+          <div class="lesson">
+            <h3>How Machine Learning Works</h3>
+            <p class="caption">Learn the difference between supervised, unsupervised, and reinforcement learning.</p>
+            <ul>
+              <li><strong>Supervised learning</strong>: model learns from labeled examples.</li>
+              <li><strong>Unsupervised learning</strong>: model finds patterns in unlabeled data.</li>
+              <li><strong>Reinforcement learning</strong>: model learns by rewards and penalties.</li>
+              <li>Each type is useful for different problems: classification, clustering, control.</li>
+            </ul>
+            <img src="https://via.placeholder.com/900x360?text=Machine+Learning+Types" alt="Machine learning types" />
+          </div>
+
+          <div class="lesson">
+            <h3>Neural Networks and Deep Learning Explained Simply</h3>
+            <p class="caption">Understand the neuron-like structure and layered computation behind deep models.</p>
+            <ul>
+              <li>Neural networks process data through layers of weighted connections.</li>
+              <li>Deep learning uses many layers to learn high-level features automatically.</li>
+              <li>Backpropagation adjusts weights to minimize prediction errors.</li>
+              <li>Common layers include dense, convolutional, and transformer blocks.</li>
+            </ul>
+            <img src="https://via.placeholder.com/900x360?text=Neural+Networks+Simplified" alt="Neural network diagram" />
+          </div>
+
+          <div class="lesson">
+            <h3>Natural Language Processing (NLP)</h3>
+            <p class="caption">NLP enables machines to read, understand, and generate human language.</p>
+            <ul>
+              <li>Text understanding includes sentiment analysis, translation, summarization.</li>
+              <li>Speech processing includes voice recognition and speech-to-text.</li>
+              <li>Large language models power chatbots, drafting assistants, and search intelligence.</li>
+              <li>Key tasks: tokenization, embeddings, sequence modeling.</li>
+            </ul>
+            <img src="https://via.placeholder.com/900x360?text=Natural+Language+Processing" alt="Natural language processing" />
+          </div>
+
+          <div class="lesson">
+            <h3>Computer Vision</h3>
+            <p class="caption">Teach machines to see by training on images and video frames.</p>
+            <ul>
+              <li>Computer vision tasks include detection, recognition, segmentation, and tracking.</li>
+              <li>Convolutional neural networks (CNNs) are common for image processing.</li>
+              <li>Vision transformers and multimodal models combine image and language understanding.</li>
+              <li>Applications include object recognition, medical imaging, and autonomous systems.</li>
+            </ul>
+            <img src="https://via.placeholder.com/900x360?text=Computer+Vision+Concepts" alt="Computer vision" />
+          </div>
+
+          <div class="lesson">
+            <h3>Generative AI</h3>
+            <p class="caption">Discover how AI creates text, images, code, and videos from prompts.</p>
+            <ul>
+              <li>Generative models learn patterns in data and produce new examples.</li>
+              <li>Text generation uses large language models like GPT and Claude.</li>
+              <li>Image generation uses diffusion, GANs, and transformer-based generators.</li>
+              <li>Video and multimedia generation combine audio, visual, and text signals.</li>
+            </ul>
+            <img src="https://via.placeholder.com/900x360?text=Generative+AI+in+Action" alt="Generative AI" />
+          </div>
+        </section>
+
+        <section class="card" id="prompt-engineering">
+          <h2>Section 3: Prompt Engineering</h2>
+          <p>Prompt engineering is the art of asking AI the right way so it returns better, more useful results.</p>
+
+          <div class="lesson">
+            <h3>Introduction to Prompt Engineering</h3>
+            <p class="caption">Prompts are the gateway to useful AI behavior.</p>
+            <ul>
+              <li>Prompts tell the AI what to do and how to behave.</li>
+              <li>Clear prompts reduce mistakes and improve output quality.</li>
+              <li>Effective prompts include instructions, examples, and context.</li>
+            </ul>
+            <img src="https://via.placeholder.com/900x360?text=Prompt+Engineering+Basics" alt="Prompt engineering" />
+          </div>
+
+          <div class="lesson">
+            <h3>Basic Prompting Techniques</h3>
+            <p class="caption">Zero-shot and few-shot approaches help you guide AI without training new models.</p>
+            <ul>
+              <li><strong>Zero-shot</strong> prompts ask the model directly with no examples.</li>
+              <li><strong>Few-shot</strong> prompts include a handful of examples to demonstrate the task.</li>
+              <li>Few-shot often improves accuracy for complex or unusual tasks.</li>
+            </ul>
+            <img src="https://via.placeholder.com/900x360?text=Zero-shot+vs+Few-shot" alt="Prompting techniques" />
+          </div>
+
+          <div class="lesson">
+            <h3>Advanced Prompting Techniques</h3>
+            <p class="caption">Use advanced patterns to unlock more reliable and creative AI behavior.</p>
+            <ul>
+              <li><strong>Chain-of-thought</strong> prompts ask the model to explain its reasoning step-by-step.</li>
+              <li><strong>Role playing</strong> assigns a persona to the model for more consistent responses.</li>
+              <li><strong>Instruction scaffolding</strong> breaks complex requests into smaller steps.</li>
+            </ul>
+            <img src="https://via.placeholder.com/900x360?text=Advanced+Prompting+Techniques" alt="Advanced prompting" />
+          </div>
+
+          <div class="lesson">
+            <h3>How to Write Effective Prompts – Step-by-Step Guide</h3>
+            <p class="caption">Follow a practical prompt-writing recipe for clear, actionable results.</p>
+            <ul>
+              <li>1. Define the objective: what output do you need?</li>
+              <li>2. Provide clear instructions and style requirements.</li>
+              <li>3. Add context or examples if the task is specific.</li>
+              <li>4. Ask for preferred format: list, paragraph, summary, code, etc.</li>
+              <li>5. Refine the prompt based on the response and iterate.</li>
+            </ul>
+            <img src="https://via.placeholder.com/900x360?text=Write+Effective+Prompts" alt="Effective prompts" />
+          </div>
+
+          <div class="lesson">
+            <h3>Best Practices for ChatGPT, Claude, Gemini & Grok</h3>
+            <p class="caption">Each AI assistant has strengths—choose the right one and prompt it appropriately.</p>
+            <ul>
+              <li>ChatGPT is strong for conversational writing, brainstorming, and creative text.</li>
+              <li>Claude focuses on safe, research-oriented, and polite dialogue.</li>
+              <li>Gemini excels at multimodal tasks and Google ecosystem workflows.</li>
+              <li>Grok is built for fast, concise answers and internet-aware context.</li>
+            </ul>
+            <img src="https://via.placeholder.com/900x360?text=AI+Assistant+Best+Practices" alt="AI tools best use" />
+          </div>
+
+          <div class="lesson">
+            <h3>Common Prompting Mistakes & How to Fix Them</h3>
+            <p class="caption">Avoid the usual errors that cause unhelpful responses.</p>
+            <ul>
+              <li>Too vague prompts produce generic answers—be more specific.</li>
+              <li>Too much instruction can confuse the model—keep it concise but complete.</li>
+              <li>Missing context leads to wrong assumptions—provide relevant details.</li>
+              <li>Not asking for format causes inconsistent output—state the desired structure.</li>
+            </ul>
+            <img src="https://via.placeholder.com/900x360?text=Fix+Prompting+Mistakes" alt="Prompt mistakes" />
+          </div>
+        </section>
+
+        <section class="card" id="popular-tools">
+          <h2>Section 4: Popular AI Tools (Hands-on)</h2>
+          <p>Compare top AI tools and learn how to use them for content creation, productivity, automation, coding, and research.</p>
+
+          <div class="lesson">
+            <h3>ChatGPT, Claude, Gemini & Grok – Comparison & Best Use Cases</h3>
+            <p class="caption">Choose the best assistant for writing, research, exploration, or quick answers.</p>
+            <ul>
+              <li><strong>ChatGPT</strong>: general-purpose writing, editing, and brainstorming.</li>
+              <li><strong>Claude</strong>: safe research, summarization, and sensitive workflows.</li>
+              <li><strong>Gemini</strong>: Google services, multimodal tasks, and integrated search.</li>
+              <li><strong>Grok</strong>: concise, fast replies with internet context.</li>
+            </ul>
+            <img src="https://via.placeholder.com/900x360?text=ChatGPT+vs+Claude+vs+Gemini+vs+Grok" alt="AI assistant comparison" />
+          </div>
+
+          <div class="lesson">
+            <h3>AI for Content Creation</h3>
+            <p class="caption">Use AI to write articles, design images, and produce compelling videos.</p>
+            <ul>
+              <li>Writing tools generate blog posts, scripts, social copy, and outlines.</li>
+              <li>Image tools create original visuals from text prompts.</li>
+              <li>Video tools help with storyboards, editing suggestions, and short clip generation.</li>
+            </ul>
+            <img src="https://via.placeholder.com/900x360?text=AI+Content+Creation" alt="AI content creation" />
+          </div>
+
+          <div class="lesson">
+            <h3>AI for Productivity & Automation</h3>
+            <p class="caption">Automate repetitive work and manage tasks with smart AI helpers.</p>
+            <ul>
+              <li>Notion AI helps summarize notes, write plans, and automate content workflows.</li>
+              <li>Zapier connects apps and triggers actions using AI-powered automation.</li>
+              <li>Microsoft Copilot brings AI into Office apps, Teams, and business workflows.</li>
+            </ul>
+            <img src="https://via.placeholder.com/900x360?text=AI+Productivity+Tools" alt="AI productivity" />
+          </div>
+
+          <div class="lesson">
+            <h3>AI Coding Assistants</h3>
+            <p class="caption">Code smarter with tools that autocomplete, explain, and debug for you.</p>
+            <ul>
+              <li>GitHub Copilot offers code suggestions directly inside your editor.</li>
+              <li>Cursor speeds up development with quick code search and generation.</li>
+              <li>Use code assistants for learning new languages, fixing bugs, and writing tests.</li>
+            </ul>
+            <img src="https://via.placeholder.com/900x360?text=AI+Coding+Assistants" alt="AI coding assistants" />
+          </div>
+
+          <div class="lesson">
+            <h3>AI for Data Analysis & Research</h3>
+            <p class="caption">Turn complex information into insights with AI-powered research tools.</p>
+            <ul>
+              <li>Perplexity provides fast, citation-backed answers and research summaries.</li>
+              <li>NotebookLM helps explore documents and uncover insights from files.</li>
+              <li>AI makes data exploration faster with natural language queries and visual summaries.</li>
+            </ul>
+            <img src="https://via.placeholder.com/900x360?text=AI+Data+Analysis+Tools" alt="AI data analysis" />
+          </div>
+
+          <div class="lesson">
+            <h3>Image & Design Tools</h3>
+            <p class="caption">Create polished visuals with prompts in tools like Midjourney and DALL·E.</p>
+            <ul>
+              <li>Midjourney and DALL·E generate art, logos, product mockups, and concept images.</li>
+              <li>Canva Magic Studio blends AI with drag-and-drop design for easy visuals.</li>
+              <li>Use these tools to prototype brand assets, social media posts, and marketing graphics.</li>
+            </ul>
+            <img src="https://via.placeholder.com/900x360?text=AI+Design+Tools" alt="AI image design" />
+          </div>
+
+          <div class="lesson">
+            <h3>Building Simple AI Workflows & Agents</h3>
+            <p class="caption">Combine tools into workflows that automate tasks and answer questions.</p>
+            <ul>
+              <li>Create a workflow that turns chat input into research, summarization, and visual output.</li>
+              <li>Use agents to chain tools like search, document reading, and task execution.</li>
+              <li>Start small: automate an email reply, generate a blog outline, or build a content planner.</li>
+            </ul>
+            <img src="https://via.placeholder.com/900x360?text=AI+Workflows+and+Agents" alt="AI workflows" />
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <div class="footer">
+      Learn by doing: review each section, try prompt examples, and experiment with the tools to build your own AI workflow.
+    </div>
+  </main>
+</body>
+</html>

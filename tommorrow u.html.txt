@@ -1,0 +1,165 @@
+Here is a modern, clean design for **System Software** - made to match your previous Input Devices style. Just copy-paste.
+
+### Complete Code (HTML + CSS in one file)
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>System Software</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+  body {
+    min-height: 100vh;
+    background: #0b1120;
+    background-image: radial-gradient(circle at 15% 15%, #1e3a8a 0%, transparent 40%),
+                      radial-gradient(circle at 85% 85%, #6d28d9 0%, transparent 40%);
+    padding: 40px 20px;
+    color: #e2e8f0;
+  }
+  .container { max-width: 1000px; margin: 0 auto; animation: fadeUp 0.6s ease; }
+  @keyframes fadeUp { from { transform: translateY(25px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+
+  .header { text-align: center; margin-bottom: 25px; }
+  .header .badge {
+    display: inline-block; background: rgba(34,211,238,0.15);
+    border: 1px solid rgba(34,211,238,0.4); color: #22d3ee;
+    padding: 6px 18px; border-radius: 20px;
+    font-size: 0.8rem; font-weight: 600; letter-spacing: 1.5px; margin-bottom: 12px;
+  }
+  .header h1 { font-size: 2.2rem; color: #fff; }
+  .header h1 span {
+    background: linear-gradient(90deg, #22d3ee, #818cf8, #e879f9);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+
+  /* Purpose Box */
+  .purpose-box {
+    background: linear-gradient(135deg, rgba(34,211,238,0.15), rgba(139,92,246,0.15));
+    border: 1px solid rgba(34,211,238,0.3);
+    border-left: 5px solid #22d3ee;
+    border-radius: 15px;
+    padding: 18px 20px;
+    display: flex; gap: 15px; align-items: center;
+    margin-bottom: 30px;
+    backdrop-filter: blur(10px);
+  }
+  .purpose-icon {
+    width: 55px; height: 55px; flex-shrink: 0;
+    background: linear-gradient(135deg, #22d3ee, #3b82f6);
+    border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 28px;
+  }
+  .purpose-box p { font-size: 1rem; line-height: 1.5; }
+  .purpose-box strong { color: #fff; display: block; font-size: 0.8rem; letter-spacing: 1.5px; color: #22d3ee; margin-bottom: 4px; }
+
+  .section-title {
+    font-size: 0.9rem; letter-spacing: 1.5px; color: #94a3b8;
+    margin: 25px 0 15px 0; display: flex; align-items: center; gap: 10px;
+  }
+  .section-title::after { content:''; flex: 1; height: 1px; background: rgba(255,255,255,0.1); }
+
+  /* OS Grid */
+  .os-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 18px; }
+  .os-card {
+    background: #1e293b; border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 18px; padding: 25px 20px; text-align: center;
+    transition: 0.3s ease; position: relative; overflow: hidden;
+  }
+  .os-card:hover { transform: translateY(-8px); box-shadow: 0 15px 35px rgba(0,0,0,0.4); }
+  .os-card::before { content:''; position: absolute; top:0; left:0; right:0; height:4px; }
+  .os-card:nth-child(1)::before { background: linear-gradient(90deg, #22d3ee, #3b82f6); }
+  .os-card:nth-child(2)::before { background: linear-gradient(90deg, #e2e8f0, #94a3b8); }
+  .os-card:nth-child(3)::before { background: linear-gradient(90deg, #fbbf24, #f97316); }
+
+  .os-logo { font-size: 48px; margin-bottom: 12px; display: inline-block; transition: 0.3s; }
+  .os-card:hover .os-logo { transform: scale(1.15) rotate(-5deg); }
+  .os-card h3 { color: #fff; font-size: 1.15rem; }
+  .pill {
+    display: inline-block; font-size: 0.75rem; font-weight: 600;
+    padding: 4px 12px; border-radius: 20px; margin: 8px 0 10px 0;
+  }
+  .pill-blue { background: rgba(59,130,246,0.2); color: #60a5fa; border: 1px solid rgba(59,130,246,0.4); }
+  .pill-gray { background: rgba(226,232,240,0.15); color: #e2e8f0; border: 1px solid rgba(226,232,240,0.3); }
+  .pill-green { background: rgba(34,197,94,0.15); color: #4ade80; border: 1px solid rgba(34,197,94,0.4); }
+  .os-card p { font-size: 0.88rem; color: #94a3b8; }
+
+  /* Tools Grid */
+  .tool-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 18px; }
+  .tool-card {
+    background: #1e293b; border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 15px; padding: 18px; display: flex; gap: 15px; align-items: center;
+    transition: 0.3s ease;
+  }
+  .tool-card:hover { transform: translateX(6px); border-color: rgba(34,211,238,0.4); }
+  .tool-icon {
+    width: 55px; height: 55px; flex-shrink: 0; border-radius: 12px;
+    display: flex; align-items: center; justify-content: center; font-size: 26px;
+  }
+  .tool-card:nth-child(1) .tool-icon { background: linear-gradient(135deg, #a78bfa, #ec4899); }
+  .tool-card:nth-child(2) .tool-icon { background: linear-gradient(135deg, #34d399, #14b8a6); }
+  .tool-card h3 { color: #fff; font-size: 1rem; margin-bottom: 4px; }
+  .tool-card p { font-size: 0.85rem; color: #94a3b8; }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <div class="header">
+    <div class="badge">TYPES OF SOFTWARE</div>
+    <h1>System <span>Software</span></h1>
+  </div>
+
+  <div class="purpose-box">
+    <div class="purpose-icon">🎯</div>
+    <p><strong>PURPOSE</strong> Controls computer hardware and manages system resources</p>
+  </div>
+
+  <div class="section-title">POPULAR OPERATING SYSTEMS</div>
+  <div class="os-grid">
+    <div class="os-card">
+      <div class="os-logo">🪟</div>
+      <h3>Windows 10 / 11</h3>
+      <div class="pill pill-blue">Operating System</div>
+      <p>Most popular OS by Microsoft for PCs</p>
+    </div>
+    <div class="os-card">
+      <div class="os-logo">🍎</div>
+      <h3>macOS</h3>
+      <div class="pill pill-gray">Operating System</div>
+      <p>Apple's OS for Mac computers</p>
+    </div>
+    <div class="os-card">
+      <div class="os-logo">🐧</div>
+      <h3>Linux</h3>
+      <div class="pill pill-green">Free OS</div>
+      <p>Free, secure & open-source OS</p>
+    </div>
+  </div>
+
+  <div class="section-title">OTHER SYSTEM SOFTWARE</div>
+  <div class="tool-grid">
+    <div class="tool-card">
+      <div class="tool-icon">⚙️</div>
+      <div><h3>Device Drivers</h3><p>Control hardware devices like printer, mouse</p></div>
+    </div>
+    <div class="tool-card">
+      <div class="tool-icon">🧹</div>
+      <div><h3>Utilities</h3><p>System cleaning, disk management, antivirus</p></div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
+```
+
+### Why this is effective:
+1.  **Purpose Highlighted:** Top banner immediately explains the concept.
+2.  **Smart Grouping:** OS separated from Drivers/Utilities for better understanding.
+3.  **Visual Memory:** 🪟 🍎 🐧 icons help students remember faster.
+4.  **Color Pills:** Clearly shows which is Paid OS vs Free OS.
+
+Want me to make **Application Software** in the exact same style to complete the pair?

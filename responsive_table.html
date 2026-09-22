@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Student Table</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .table-container {
+            background: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 800px;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #1e40af;
+            font-size: 24px;
+        }
+
+        /* Table wrapper for horizontal scroll on small screens */
+        .table-wrapper {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 400px;
+        }
+
+        th,
+        td {
+            padding: 14px 18px;
+            text-align: left;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        th {
+            background: #2563eb;
+            color: #fff;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 14px;
+            letter-spacing: 0.5px;
+        }
+
+        tr:nth-child(even) {
+            background: #f9fafb;
+        }
+
+        tr:hover {
+            background: #eff6ff;
+            transition: background 0.3s ease;
+        }
+
+        td {
+            color: #374151;
+            font-size: 15px;
+        }
+
+        /* Mobile: Card-style layout */
+        @media (max-width: 600px) {
+            .table-container {
+                padding: 20px 15px;
+            }
+
+            h2 {
+                font-size: 20px;
+            }
+
+            thead {
+                display: none;
+            }
+
+            table,
+            tbody,
+            tr,
+            td {
+                display: block;
+                width: 100%;
+            }
+
+            tr {
+                margin-bottom: 15px;
+                background: #f9fafb;
+                border-radius: 8px;
+                padding: 10px;
+                box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+            }
+
+            td {
+                padding: 10px 12px;
+                border-bottom: 1px solid #e5e7eb;
+                text-align: right;
+                position: relative;
+            }
+
+            td:last-child {
+                border-bottom: none;
+            }
+
+            /* Add labels using data-label */
+            td::before {
+                content: attr(data-label);
+                position: absolute;
+                left: 12px;
+                top: 10px;
+                font-weight: 600;
+                color: #2563eb;
+                text-transform: uppercase;
+                font-size: 12px;
+            }
+
+            td {
+                padding-left: 50%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="table-container">
+        <h2>📚 Student Information</h2>
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Student ID</th>
+                        <th>Name</th>
+                        <th>City</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td data-label="Student ID">101</td>
+                        <td data-label="Name">Akshat</td>
+                        <td data-label="City">Indore</td>
+                    </tr>
+                    <tr>
+                        <td data-label="Student ID">102</td>
+                        <td data-label="Name">Rahul</td>
+                        <td data-label="City">Bhopal</td>
+                    </tr>
+                    <tr>
+                        <td data-label="Student ID">103</td>
+                        <td data-label="Name">Priya</td>
+                        <td data-label="City">Delhi</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+
+</html>

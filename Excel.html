@@ -1,0 +1,2921 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Excel Course - From Beginner to Advanced</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f5f5f5;
+        }
+
+        /* Header */
+        header {
+            background: #047857;
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        h1 {
+            font-size: 24px;
+        }
+
+        h1 i {
+            margin-right: 10px;
+        }
+
+        nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 0;
+            font-weight: 500;
+            padding: 8px 10px;
+            border-radius: 4px;
+        }
+
+        nav a:hover {
+            text-decoration: none;
+            background: rgba(255,255,255,0.15);
+        }
+
+        /* Main Layout */
+        .main-wrapper {
+            display: flex;
+            margin-top: 80px;
+            min-height: calc(100vh - 80px);
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 300px;
+            background: white;
+            padding: 20px;
+            border-right: 1px solid #ddd;
+            overflow-y: auto;
+            height: calc(100vh - 80px);
+            position: fixed;
+            left: 0;
+            top: 80px;
+        }
+
+        .sidebar-section {
+            margin-bottom: 30px;
+        }
+
+        .sidebar-section h3 {
+            color: #047857;
+            font-size: 16px;
+            margin-bottom: 10px;
+            padding-bottom: 5px;
+            border-bottom: 2px solid #ecfdf5;
+        }
+
+        .sidebar-item {
+            display: block;
+            padding: 10px 14px;
+            margin: 4px 0;
+            text-decoration: none;
+            color: #555;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .sidebar-item:hover {
+            background: #f0f0f0;
+            border-left-color: #047857;
+            color: #047857;
+        }
+
+        .sidebar-item.active {
+            background: #ecfdf5;
+            border-left-color: #047857;
+            color: #047857;
+            font-weight: 600;
+        }
+
+        /* Main Content */
+        .content {
+            flex: 1;
+            padding: 40px;
+            background: white;
+            margin: 20px 20px 20px 340px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            min-width: 0;
+        }
+
+        .content h2 {
+            font-size: 32px;
+            margin-bottom: 20px;
+            color: #000;
+        }
+
+        .content p {
+            line-height: 1.8;
+            margin-bottom: 15px;
+            color: #555;
+        }
+
+        .content h3 {
+            font-size: 20px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            color: #000;
+        }
+
+        .content h4 {
+            font-size: 16px;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            color: #000;
+        }
+
+        /* Example Box */
+        .example {
+            background: #f9f9f9;
+            border-left: 4px solid #047857;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+
+        .example-label {
+            color: #047857;
+            font-weight: 700;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        .code-block {
+            background: #f1f1f1;
+            border: 1px solid #ddd;
+            padding: 15px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            overflow-x: auto;
+            line-height: 1.5;
+            color: #000;
+        }
+
+        /* Try It Yourself */
+        .try-it-yourself {
+            background: #f9f9f9;
+            border: 2px solid #047857;
+            border-radius: 4px;
+            overflow: hidden;
+            margin: 30px 0;
+        }
+
+        .try-header {
+            background: #047857;
+            color: white;
+            padding: 12px 15px;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .try-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+        }
+
+        .try-editor {
+            padding: 15px;
+            border-right: 1px solid #ddd;
+        }
+
+        .try-editor textarea {
+            width: 100%;
+            height: 300px;
+            padding: 10px;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            resize: vertical;
+        }
+
+        .try-preview {
+            padding: 15px;
+            background: white;
+            border-left: 1px solid #ddd;
+        }
+
+        .try-preview .result {
+            background: #f8f9fa;
+            border: 1px solid #ddd;
+            padding: 15px;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 13px;
+            min-height: 280px;
+            white-space: pre-wrap;
+        }
+
+        .run-btn {
+            background: green;
+            color: white;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 13px;
+        }
+
+        .run-btn:hover {
+            background: #065f46;
+        }
+
+        /* Note Box */
+        .note {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+
+        .note strong {
+            color: #ff9800;
+        }
+
+        /* Exercise */
+        .exercise {
+            background: #e3f2fd;
+            border-left: 4px solid #2196F3;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+
+        .exercise-label {
+            color: #2196F3;
+            font-weight: 700;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        /* Navigation */
+        .nav-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #ddd;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-prev {
+            background: #f0f0f0;
+            color: #333;
+        }
+
+        .btn-prev:hover {
+            background: #e0e0e0;
+        }
+
+        .btn-next {
+            background: #047857;
+            color: white;
+            margin-left: auto;
+        }
+
+        .btn-next:hover {
+            background: #065f46;
+        }
+
+        /* Progress Bar */
+        .progress-bar {
+            width: 100%;
+            height: 4px;
+            background: #ddd;
+            border-radius: 2px;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+
+        .progress {
+            height: 100%;
+            background: #047857;
+            transition: width 0.3s ease;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .sidebar {
+                width: 260px;
+            }
+
+            .content {
+                margin: 20px 20px 20px 280px;
+            }
+        }
+
+        @media (max-width: 900px) {
+            .main-wrapper {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: static;
+                border-right: none;
+                border-bottom: 1px solid #ddd;
+                padding: 15px 20px;
+                max-height: none;
+            }
+
+            .content {
+                margin: 20px;
+                padding: 25px;
+            }
+
+            .try-container {
+                grid-template-columns: 1fr;
+            }
+
+            .try-editor {
+                border-right: none;
+                border-bottom: 1px solid #ddd;
+            }
+
+            .container {
+                justify-content: center;
+            }
+
+            nav {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 600px) {
+            header {
+                padding: 1rem 0.75rem;
+            }
+
+            .container {
+                padding: 0 12px;
+            }
+
+            h1 {
+                font-size: 20px;
+            }
+
+            nav a {
+                font-size: 14px;
+                padding: 6px 8px;
+            }
+
+            .content {
+                padding: 18px;
+                margin: 16px;
+            }
+
+            .try-editor textarea,
+            .try-preview .result {
+                min-height: 220px;
+            }
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        /* Table styles for Excel results */
+        .excel-table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 10px 0;
+        }
+
+        .excel-table th, .excel-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        .excel-table th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+
+        /* YouTube Video Styles */
+        .youtube-video {
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .youtube-video h4 {
+            color: #047857;
+            margin-bottom: 10px;
+        }
+
+        .youtube-video iframe {
+            max-width: 100%;
+            height: 315px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <h1>
+                <i class="fas fa-file-excel"></i>
+                Excel Course
+            </h1>
+            <nav>
+                <a href="/BasicComp.html" onclick="showSection('home')">Home</a>
+                <a href="#" onclick="showSection('references')">References</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <div class="main-wrapper">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-section">
+                <h3>Excel Basics</h3>
+                <div class="sidebar-item active" onclick="loadLesson('excel1')">
+                    <i class="fas fa-play"></i> Excel Interface & Basics
+                </div>
+                <div class="sidebar-item" onclick="loadLesson('excel2')">
+                    <i class="fas fa-play"></i> Data Entry & Formatting
+                </div>
+                <div class="sidebar-item" onclick="loadLesson('excel3')">
+                    <i class="fas fa-play"></i> Basic Formulas & Functions
+                </div>
+                <div class="sidebar-item" onclick="loadLesson('excel4')">
+                    <i class="fas fa-play"></i> Sorting, Filtering & Navigation
+                </div>
+            </div>
+
+            <div class="sidebar-section">
+                <h3>Formulas & Functions</h3>
+                <div class="sidebar-item" onclick="loadLesson('excel5')">
+                    <i class="fas fa-play"></i> Logical Functions (IF, AND, OR)
+                </div>
+                <div class="sidebar-item" onclick="loadLesson('excel6')">
+                    <i class="fas fa-play"></i> Lookup Functions (VLOOKUP, XLOOKUP)
+                </div>
+                <div class="sidebar-item" onclick="loadLesson('excel7')">
+                    <i class="fas fa-play"></i> Text & Date Functions
+                </div>
+            </div>
+
+            <div class="sidebar-section">
+                <h3>Data Cleaning & Validation</h3>
+                <div class="sidebar-item" onclick="loadLesson('excel8')">
+                    <i class="fas fa-play"></i> Conditional Formatting
+                </div>
+                <div class="sidebar-item" onclick="loadLesson('excel9')">
+                    <i class="fas fa-play"></i> Data Validation & Tables
+                </div>
+                <div class="sidebar-item" onclick="loadLesson('excel10')">
+                    <i class="fas fa-play"></i> Charts & Basic Visualization
+                </div>
+            </div>
+
+            <div class="sidebar-section">
+                <h3>PivotTables & Summarization</h3>
+                <div class="sidebar-item" onclick="loadLesson('excel11')">
+                    <i class="fas fa-play"></i> PivotTables Basics
+                </div>
+                <div class="sidebar-item" onclick="loadLesson('excel12')">
+                    <i class="fas fa-play"></i> Advanced PivotTables
+                </div>
+            </div>
+
+            <div class="sidebar-section">
+                <h3>Charts & Dashboards</h3>
+                <div class="sidebar-item" onclick="loadLesson('excel13')">
+                    <i class="fas fa-play"></i> Advanced Charting
+                </div>
+                <div class="sidebar-item" onclick="loadLesson('excel14')">
+                    <i class="fas fa-play"></i> Excel Dashboards & Reporting
+                </div>
+            </div>
+
+            <div class="sidebar-section">
+                <h3>Advanced Formulas & Analysis</h3>
+                <div class="sidebar-item" onclick="loadLesson('excel15')">
+                    <i class="fas fa-play"></i> Array Formulas & Dynamic Arrays
+                </div>
+                <div class="sidebar-item" onclick="loadLesson('excel16')">
+                    <i class="fas fa-play"></i> What-If Analysis
+                </div>
+            </div>
+
+            <div class="sidebar-section">
+                <h3>Power Query & Power Pivot</h3>
+                <div class="sidebar-item" onclick="loadLesson('excel17')">
+                    <i class="fas fa-play"></i> Power Query for Data Import
+                </div>
+                <div class="sidebar-item" onclick="loadLesson('excel18')">
+                    <i class="fas fa-play"></i> Power Pivot & Data Model
+                </div>
+            </div>
+
+            <div class="sidebar-section">
+                <h3>Macros & VBA</h3>
+                <div class="sidebar-item" onclick="loadLesson('excel19')">
+                    <i class="fas fa-play"></i> Introduction to Macros
+                </div>
+                <div class="sidebar-item" onclick="loadLesson('excel20')">
+                    <i class="fas fa-play"></i> VBA Programming Basics
+                </div>
+            </div>
+        </aside>
+
+        <!-- Content Area -->
+        <main class="content" id="content">
+            <!-- Progress Bar -->
+            <div class="progress-bar">
+                <div class="progress" id="progressBar" style="width: 0%;"></div>
+            </div>
+
+            <!-- Excel1: Excel Interface & Basics -->
+            <div id="lesson-excel1" class="lesson">
+                <h2>Introduction to Microsoft Excel Interface</h2>
+
+                <p><strong>Microsoft Excel</strong> is a powerful spreadsheet program that allows you to organize, analyze, and visualize data. It consists of workbooks containing multiple worksheets.</p>
+
+                <h3>Excel Interface Components</h3>
+                <ul style="margin-left: 20px; line-height: 1.8;">
+                    <li><strong>Ribbon</strong> - Contains tabs with commands and tools</li>
+                    <li><strong>Worksheet</strong> - The grid where you enter data (columns A-Z, AA-AZ, etc., rows 1-1,048,576)</li>
+                    <li><strong>Formula Bar</strong> - Shows the contents of the active cell</li>
+                    <li><strong>Name Box</strong> - Shows the address of the active cell</li>
+                    <li><strong>Status Bar</strong> - Shows summary information and view options</li>
+                </ul>
+
+                <h3>Creating and Managing Workbooks</h3>
+                <div class="example">
+                    <div class="example-label">WORKBOOK OPERATIONS</div>
+                    <div class="code-block">Creating a new workbook:
+- File → New → Blank Workbook
+- Ctrl + N (keyboard shortcut)
+
+Saving workbooks:
+- File → Save As
+- Ctrl + S (Save)
+- F12 (Save As)
+
+Managing worksheets:
+- Insert → Insert Sheet
+- Right-click sheet tab → Rename
+- Right-click sheet tab → Delete
+- Drag sheet tabs to reorder</div>
+                </div>
+
+                <h3>Basic Navigation</h3>
+                <table class="excel-table">
+                    <tr><th>Action</th><th>Keyboard Shortcut</th><th>Description</th></tr>
+                    <tr><td>Move to next cell</td><td>Tab or Enter</td><td>Move right or down</td></tr>
+                    <tr><td>Move to end of data</td><td>Ctrl + Arrow Key</td><td>Jump to last cell with data</td></tr>
+                    <tr><td>Select entire row</td><td>Shift + Space</td><td>Select the current row</td></tr>
+                    <tr><td>Select entire column</td><td>Ctrl + Space</td><td>Select the current column</td></tr>
+                    <tr><td>Go to specific cell</td><td>F5 or Ctrl + G</td><td>Go To dialog box</td></tr>
+                </table>
+
+                <div class="note">
+                    <strong>💡 Tip:</strong> Excel 365 and Excel 2021 have 1,048,576 rows and 16,384 columns (XFD). Older versions have fewer rows and columns.
+                </div>
+
+                <div class="youtube-video" style="margin: 20px 0;">
+                    <h4>📹 Related YouTube Video</h4>
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/nhQObRGk6hA?si=gi8Ck28t1NIUuBnw" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              <!-- video link u1
+                 <iframe width="560" height="315" src="https://www.youtube.com/embed/nhQObRGk6hA?si=gi8Ck28t1NIUuBnw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>   
+             
+                -->
+                </div>
+
+                <div class="nav-buttons">
+                    <button class="btn btn-prev" onclick="prevLesson()">← Previous</button>
+                    <button class="btn btn-next" onclick="nextLesson()">Next →</button>
+                </div>
+            </div>
+
+            <!-- Excel2: Data Entry & Formatting -->
+            <div id="lesson-excel2" class="lesson hidden">
+                <h2>Data Entry and Basic Cell Formatting</h2>
+
+                <p>Excel provides various ways to enter and format data to make your spreadsheets more readable and professional.</p>
+
+                <h3>Data Entry Techniques</h3>
+                <div class="example">
+                    <div class="example-label">DATA ENTRY METHODS</div>
+                    <div class="code-block">Direct typing:
+- Click on a cell and start typing
+- Press Enter to move down, Tab to move right
+
+AutoFill:
+- Type "January" in A1
+- Drag the fill handle (small square at bottom-right) down
+- Excel will fill: February, March, April...
+
+Flash Fill (Excel 2013+):
+- Type pattern in column B: "John Doe" → "Doe, John"
+- Start typing the pattern in the next cell
+- Excel recognizes the pattern and fills automatically
+- Press Ctrl + E to accept Flash Fill</div>
+                </div>
+
+                <h3>Basic Cell Formatting</h3>
+                <table class="excel-table">
+                    <tr><th>Formatting Type</th><th>Location</th><th>Shortcut</th></tr>
+                    <tr><td>Bold</td><td>Home → Font</td><td>Ctrl + B</td></tr>
+                    <tr><td>Italic</td><td>Home → Font</td><td>Ctrl + I</td></tr>
+                    <tr><td>Underline</td><td>Home → Font</td><td>Ctrl + U</td></tr>
+                    <tr><td>Font Size</td><td>Home → Font</td><td>Ctrl + Shift + P</td></tr>
+                    <tr><td>Font Color</td><td>Home → Font</td><td>Alt + H, F, C</td></tr>
+                    <tr><td>Fill Color</td><td>Home → Font</td><td>Alt + H, H</td></tr>
+                </table>
+
+                <h3>Number Formatting</h3>
+                <div class="example">
+                    <div class="example-label">NUMBER FORMATS</div>
+                    <div class="code-block">Currency: $1,234.56
+- Right-click cell → Format Cells → Currency
+
+Percentage: 85%
+- Right-click cell → Format Cells → Percentage
+
+Date: 12/25/2023
+- Right-click cell → Format Cells → Date
+
+Custom formats:
+- "00000" for zip codes
+- "(###) ###-####" for phone numbers
+- "mm/dd/yyyy" for dates</div>
+                </div>
+
+                <h3>Cut, Copy, and Paste Special</h3>
+                <div class="example">
+                    <div class="example-label">PASTE SPECIAL OPTIONS</div>
+                    <div class="code-block">Paste Special (Ctrl + Alt + V):
+- Values only (removes formulas)
+- Formulas only
+- Formats only
+- Column widths
+- Transpose (switch rows/columns)
+- Skip blanks
+- Operation (Add, Subtract, Multiply, Divide)</div>
+                </div>
+
+                <div class="exercise">
+                    <div class="exercise-label">📝 EXERCISE</div>
+                    <p>Create a simple employee list with names, departments, and salaries. Apply appropriate formatting to make it look professional.</p>
+                </div>
+
+                <div class="youtube-video" style="margin: 20px 0;">
+                    <h4>📹 Related YouTube Video</h4>
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/RtN4TF6eYL8?si=Dtpm1E2WzpFmOEml" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+             <!-- video link u2
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/RtN4TF6eYL8?si=Dtpm1E2WzpFmOEml" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>-->
+             
+             
+                </div>
+
+                <div class="nav-buttons">
+                    <button class="btn btn-prev" onclick="prevLesson()">← Previous</button>
+                    <button class="btn btn-next" onclick="nextLesson()">Next →</button>
+                </div>
+            </div>
+
+            <!-- Excel3: Basic Formulas & Functions -->
+            <div id="lesson-excel3" class="lesson hidden">
+                <h2>Basic Formulas and Essential Functions</h2>
+
+                <p>Formulas are expressions that perform calculations on values in your worksheet. Functions are predefined formulas that perform specific calculations.</p>
+
+                <h3>Basic Formula Structure</h3>
+                <div class="code-block">All formulas start with an equals sign (=)
+Examples:
+=A1 + B1 (addition)
+=A1 - B1 (subtraction)
+=A1 * B1 (multiplication)
+=A1 / B1 (division)
+=A1 ^ 2 (exponentiation)</div>
+
+                <h3>Cell References</h3>
+                <table class="excel-table">
+                    <tr><th>Reference Type</th><th>Example</th><th>Description</th></tr>
+                    <tr><td>Relative</td><td>A1</td><td>Changes when copied</td></tr>
+                    <tr><td>Absolute</td><td>$A$1</td><td>Never changes when copied</td></tr>
+                    <tr><td>Mixed</td><td>$A1 or A$1</td><td>Partially changes when copied</td></tr>
+                </table>
+
+                <h3>Essential Functions</h3>
+                <div class="example">
+                    <div class="example-label">BASIC FUNCTIONS</div>
+                    <div class="code-block">SUM function:
+=SUM(A1:A10) or =SUM(A1, B1, C1)
+
+AVERAGE function:
+=AVERAGE(A1:A10)
+
+COUNT function:
+=COUNT(A1:A10) - counts numbers
+=COUNTA(A1:A10) - counts non-empty cells
+
+MIN and MAX functions:
+=MIN(A1:A10)
+=MAX(A1:A10)</div>
+                </div>
+
+                <h3>Try It Yourself</h3>
+                <div class="try-it-yourself">
+                    <div class="try-header">
+                        <span>✏️ Practice Basic Formulas</span>
+                        <button class="run-btn" onclick="runExcel('excel3')">▶ Calculate</button>
+                    </div>
+                    <div class="try-container">
+                        <div class="try-editor">
+                            <textarea id="code-excel3">-- Sample data in cells A1:A5: 10, 20, 30, 40, 50
+-- Try these formulas:
+=SUM(A1:A5)
+=AVERAGE(A1:A5)
+=COUNT(A1:A5)
+=MIN(A1:A5)
+=MAX(A1:A5)</textarea>
+                        </div>
+                        <div class="try-preview">
+                            <div class="result" id="result-excel3">
+Sample Data (A1:A5): 10, 20, 30, 40, 50
+
+Results:
+SUM: 150
+AVERAGE: 30
+COUNT: 5
+MIN: 10
+MAX: 50
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="note">
+                    <strong>💡 Tip:</strong> Use the AutoSum button (Σ) on the Home tab for quick SUM, AVERAGE, COUNT, MIN, and MAX calculations.
+                </div>
+
+                <div class="youtube-video" style="margin: 20px 0;">
+                    <h4>📹 Related YouTube Video</h4>
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/nhQObRGk6hA?si=vwA0RSqtJk3FcFJe" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                <!-- video link u3
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/nhQObRGk6hA?si=vwA0RSqtJk3FcFJe" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>-->
+                </div>
+
+
+                <div class="nav-buttons">
+                    <button class="btn btn-prev" onclick="prevLesson()">← Previous</button>
+                    <button class="btn btn-next" onclick="nextLesson()">Next →</button>
+                </div>
+            </div>
+
+            <!-- Excel4: Sorting, Filtering & Navigation -->
+            <div id="lesson-excel4" class="lesson hidden">
+                <h2>Sorting, Filtering Data and Navigation</h2>
+
+                <p>Excel provides powerful tools to organize and analyze your data through sorting and filtering.</p>
+
+                <h3>Sorting Data</h3>
+                <div class="example">
+                    <div class="example-label">SORTING OPTIONS</div>
+                    <div class="code-block">Single column sort:
+- Select column → Data → Sort A to Z / Z to A
+
+Multiple column sort:
+- Data → Sort → Add Level
+- Sort by multiple criteria
+
+Custom sort:
+- Data → Sort → Options
+- Sort by day, custom lists, etc.
+
+Sort by color:
+- Data → Sort → Sort by Cell Color</div>
+                </div>
+
+                <h3>Filtering Data</h3>
+                <div class="example">
+                    <div class="example-label">FILTER TECHNIQUES</div>
+                    <div class="code-block">AutoFilter:
+- Select header row → Data → Filter
+- Click dropdown arrows for filter options
+
+Text filters:
+- Contains, Does Not Contain
+- Begins With, Ends With
+- Custom filters
+
+Number filters:
+- Equals, Does Not Equal
+- Greater Than, Less Than
+- Top 10, Above Average
+
+Date filters:
+- Today, Yesterday, This Week
+- Last Month, This Year
+- Custom date ranges</div>
+                </div>
+
+                <h3>Freezing Panes and Splitting Windows</h3>
+                <table class="excel-table">
+                    <tr><th>Feature</th><th>Location</th><th>Use Case</th></tr>
+                    <tr><td>Freeze Panes</td><td>View → Freeze Panes</td><td>Keep headers visible while scrolling</td></tr>
+                    <tr><td>Freeze Top Row</td><td>View → Freeze Top Row</td><td>Keep column headers visible</td></tr>
+                    <tr><td>Freeze First Column</td><td>View → Freeze First Column</td><td>Keep row labels visible</td></tr>
+                    <tr><td>Split Window</td><td>View → Split</td><td>View different parts of worksheet simultaneously</td></tr>
+                </table>
+
+                <h3>Try It Yourself</h3>
+                <div class="try-it-yourself">
+                    <div class="try-header">
+                        <span>✏️ Practice Sorting and Filtering</span>
+                        <button class="run-btn" onclick="runExcel('excel4')">▶ Apply</button>
+                    </div>
+                    <div class="try-container">
+                        <div class="try-editor">
+                            <textarea id="code-excel4">-- Sample employee data:
+-- Name | Department | Salary | Hire Date
+-- John Doe | Sales | 50000 | 1/15/2020
+-- Jane Smith | Marketing | 55000 | 3/20/2019
+-- Bob Johnson | Sales | 48000 | 7/10/2021
+-- Alice Brown | HR | 52000 | 11/5/2018
+
+-- Try sorting by Salary (descending)
+-- Then filter to show only Sales department</textarea>
+                        </div>
+                        <div class="try-preview">
+                            <div class="result" id="result-excel4">
+After sorting by Salary (descending):
+Jane Smith | Marketing | 55000 | 3/20/2019
+Alice Brown | HR | 52000 | 11/5/2018
+John Doe | Sales | 50000 | 1/15/2020
+Bob Johnson | Sales | 48000 | 7/10/2021
+
+After filtering for Sales department:
+John Doe | Sales | 50000 | 1/15/2020
+Bob Johnson | Sales | 48000 | 7/10/2021
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="youtube-video" style="margin: 20px 0;">
+                    <h4>📹 Related YouTube Video</h4>
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/52zXzS85Nx0?si=NMK2mg_a03fpYkF2" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                <!-- video link u4
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/52zXzS85Nx0?si=NMK2mg_a03fpYkF2" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>-->
+                </div>
+
+                <div class="nav-buttons">
+                    <button class="btn btn-prev" onclick="prevLesson()">← Previous</button>
+                    <button class="btn btn-next" onclick="nextLesson()">Next →</button>
+                </div>
+            </div>
+
+            <!-- Excel5: Logical Functions -->
+            <div id="lesson-excel5" class="lesson hidden">
+                <h2>Logical Functions (IF, AND, OR, NOT)</h2>
+
+                <p>Logical functions allow you to make decisions and perform different calculations based on conditions.</p>
+
+                <h3>IF Function</h3>
+                <div class="code-block">Syntax: =IF(logical_test, value_if_true, value_if_false)
+
+Examples:
+=IF(A1 > 100, "High", "Low")
+=IF(B2 = "Yes", 0.1, 0)
+=IF(C3 >= 90, "A", IF(C3 >= 80, "B", "C"))</div>
+
+                <h3>AND, OR, NOT Functions</h3>
+                <div class="example">
+                    <div class="example-label">LOGICAL FUNCTION COMBINATIONS</div>
+                    <div class="code-block">AND function (all conditions must be true):
+=AND(A1 > 0, B1 < 100, C1 = "Yes")
+
+OR function (at least one condition must be true):
+=OR(A1 = "Red", A1 = "Blue", A1 = "Green")
+
+NOT function (reverses the logic):
+=NOT(A1 = "No")
+
+Combined with IF:
+=IF(AND(A1 >= 90, B1 >= 90), "Excellent", "Needs Improvement")
+=IF(OR(C1 = "Manager", D1 > 50000), "Senior", "Junior")</div>
+                </div>
+
+                <h3>IFERROR Function</h3>
+                <div class="code-block">Handles errors gracefully:
+=IFERROR(A1/B1, "Division by zero")
+=IFERROR(VLOOKUP(A1, B:C, 2, FALSE), "Not found")</div>
+
+                <h3>Try It Yourself</h3>
+                <div class="try-it-yourself">
+                    <div class="try-header">
+                        <span>✏️ Practice Logical Functions</span>
+                        <button class="run-btn" onclick="runExcel('excel5')">▶ Calculate</button>
+                    </div>
+                    <div class="try-container">
+                        <div class="try-editor">
+                            <textarea id="code-excel5">-- Sample data: Score in A1 = 85
+-- Try these formulas:
+=IF(A1 >= 90, "A", IF(A1 >= 80, "B", IF(A1 >= 70, "C", "F")))
+=IF(AND(A1 >= 80, A1 <= 89), "B Grade", "Other")
+=IF(OR(A1 >= 90, A1 <= 60), "Extreme", "Average")
+=IFERROR(100/A1, "Error")</textarea>
+                        </div>
+                        <div class="try-preview">
+                            <div class="result" id="result-excel5">
+With Score = 85:
+
+Grade: B
+B Grade Check: B Grade
+Extreme Check: Average
+Division Result: 1.17647058823529
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="youtube-video" style="margin: 20px 0;">
+                    <h4>📹 Related YouTube Video</h4>
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/AyLCLIdAYoI?si=e11hlGH4zF4NWKXJ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                <!--video link u5
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/AyLCLIdAYoI?si=e11hlGH4zF4NWKXJ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>-->
+                </div>
+
+                <div class="nav-buttons">
+                    <button class="btn btn-prev" onclick="prevLesson()">← Previous</button>
+                    <button class="btn btn-next" onclick="nextLesson()">Next →</button>
+                </div>
+            </div>
+
+            <!-- Excel6: Lookup Functions -->
+            <div id="lesson-excel6" class="lesson hidden">
+                <h2>Lookup Functions (VLOOKUP, HLOOKUP, XLOOKUP)</h2>
+
+                <p>Lookup functions allow you to find and retrieve data from a table or range based on specific criteria.</p>
+
+                <h3>VLOOKUP Function</h3>
+                <div class="code-block">Syntax: =VLOOKUP(lookup_value, table_array, col_index_num, [range_lookup])
+
+Parameters:
+- lookup_value: What to search for
+- table_array: Where to search (include headers)
+- col_index_num: Which column to return (1-based)
+- range_lookup: TRUE (approximate) or FALSE (exact)
+
+Example: =VLOOKUP(A2, $D$2:$G$100, 3, FALSE)</div>
+
+                <h3>HLOOKUP Function</h3>
+                <div class="code-block">Similar to VLOOKUP but searches horizontally:
+=HLOOKUP(lookup_value, table_array, row_index_num, [range_lookup])
+
+Example: =HLOOKUP(A2, $A$1:$Z$5, 3, FALSE)</div>
+
+                <h3>XLOOKUP Function (Excel 365/2021)</h3>
+                <div class="code-block">Modern replacement for VLOOKUP:
+=XLOOKUP(lookup_value, lookup_array, return_array, [if_not_found], [match_mode], [search_mode])
+
+Advantages:
+- Searches in any direction
+- Returns arrays
+- Has built-in error handling
+- More flexible matching options
+
+Example: =XLOOKUP(A2, D:D, E:E, "Not found")</div>
+
+                <h3>Try It Yourself</h3>
+                <div class="try-it-yourself">
+                    <div class="try-header">
+                        <span>✏️ Practice Lookup Functions</span>
+                        <button class="run-btn" onclick="runExcel('excel6')">▶ Lookup</button>
+                    </div>
+                    <div class="try-container">
+                        <div class="try-editor">
+                            <textarea id="code-excel6">-- Sample data table (A1:C5):
+-- ID | Name | Department
+-- 101 | John | Sales
+-- 102 | Jane | Marketing
+-- 103 | Bob | HR
+-- 104 | Alice | Finance
+
+-- Lookup value in A7 = 102
+-- Try these formulas:
+=VLOOKUP(A7, A1:C5, 2, FALSE)
+=VLOOKUP(A7, A1:C5, 3, FALSE)
+=XLOOKUP(A7, A:A, B:B, "Not found")
+=XLOOKUP(A7, A:A, C:C, "Not found")</textarea>
+                        </div>
+                        <div class="try-preview">
+                            <div class="result" id="result-excel6">
+Looking up ID 102:
+
+VLOOKUP Name: Jane
+VLOOKUP Department: Marketing
+XLOOKUP Name: Jane
+XLOOKUP Department: Marketing
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="note">
+                    <strong>💡 Tip:</strong> XLOOKUP is the modern replacement for VLOOKUP and HLOOKUP. It doesn't require the lookup column to be the leftmost column and handles errors better.
+                </div>
+
+                <div class="youtube-video" style="margin: 20px 0;">
+                    <h4>📹 Related YouTube Video</h4>
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/OYAu3lndtDk?si=cJs-YHVtRSckEOFC" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                <!--video link u6
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/OYAu3lndtDk?si=cJs-YHVtRSckEOFC" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>-->
+                </div>
+
+                <div class="nav-buttons">
+                    <button class="btn btn-prev" onclick="prevLesson()">← Previous</button>
+                    <button class="btn btn-next" onclick="nextLesson()">Next →</button>
+                </div>
+            </div>
+
+            <!-- Excel7: Text & Date Functions -->
+            <div id="lesson-excel7" class="lesson hidden">
+                <h2>Text Functions and Date Functions</h2>
+
+                <p>Text and date functions help you manipulate and work with text strings and dates in Excel.</p>
+
+                <h3>Common Text Functions</h3>
+                <table class="excel-table">
+                    <tr><th>Function</th><th>Description</th><th>Example</th></tr>
+                    <tr><td>CONCAT</td><td>Join text strings</td><td>=CONCAT(A1, " ", B1)</td></tr>
+                    <tr><td>TEXT</td><td>Format numbers as text</td><td>=TEXT(1234.56, "$#,##0.00")</td></tr>
+                    <tr><td>LEFT/RIGHT</td><td>Extract characters</td><td>=LEFT(A1, 3) / =RIGHT(A1, 3)</td></tr>
+                    <tr><td>MID</td><td>Extract middle characters</td><td>=MID(A1, 2, 5)</td></tr>
+                    <tr><td>LEN</td><td>Get text length</td><td>=LEN(A1)</td></tr>
+                    <tr><td>TRIM</td><td>Remove extra spaces</td><td>=TRIM(A1)</td></tr>
+                    <tr><td>UPPER/LOWER</td><td>Change case</td><td>=UPPER(A1) / =LOWER(A1)</td></tr>
+                </table>
+
+                <h3>Date Functions</h3>
+                <div class="example">
+                    <div class="example-label">DATE FUNCTION EXAMPLES</div>
+                    <div class="code-block">TODAY(): Current date
+=TODAY()
+
+NOW(): Current date and time
+=NOW()
+
+DATE(year, month, day): Create date
+=DATE(2023, 12, 25)
+
+DAY/MONTH/YEAR: Extract parts
+=DAY(A1), =MONTH(A1), =YEAR(A1)
+
+DATEADD equivalents:
+=EDATE(A1, 1) - Add 1 month
+=EDATE(A1, 12) - Add 1 year
+
+Days between dates:
+=A2 - A1
+
+Working days:
+=NETWORKDAYS(A1, A2) - Exclude weekends
+=NETWORKDAYS(A1, A2, B1:B10) - Exclude holidays</div>
+                </div>
+
+                <h3>Try It Yourself</h3>
+                <div class="try-it-yourself">
+                    <div class="try-header">
+                        <span>✏️ Practice Text and Date Functions</span>
+                        <button class="run-btn" onclick="runExcel('excel7')">▶ Calculate</button>
+                    </div>
+                    <div class="try-container">
+                        <div class="try-editor">
+                            <textarea id="code-excel7">-- Sample data:
+-- A1: "John Doe"
+-- B1: 1234.56
+-- C1: 12/25/2023
+
+-- Try these formulas:
+=CONCAT(A1, " - ", TEXT(B1, "$#,##0.00"))
+=LEFT(A1, 4)
+=RIGHT(A1, 3)
+=LEN(A1)
+=UPPER(A1)
+=DAY(C1)
+=MONTH(C1)
+=YEAR(C1)
+=TEXT(C1, "dddd, mmmm dd, yyyy")</textarea>
+                        </div>
+                        <div class="try-preview">
+                            <div class="result" id="result-excel7">
+Results:
+
+Combined: John Doe - $1,234.56
+Left 4: John
+Right 3: Doe
+Length: 8
+Upper: JOHN DOE
+Day: 25
+Month: 12
+Year: 2023
+Formatted: Monday, December 25, 2023
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="youtube-video" style="margin: 20px 0;">
+                    <h4>📹 Related YouTube Video</h4>
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/ipE9m5GfcHQ?si=kn6tDT2rUXMc22X8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+               <!--video link u7
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/ipE9m5GfcHQ?si=kn6tDT2rUXMc22X8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>-->
+                </div>
+
+                <div class="nav-buttons">
+                    <button class="btn btn-prev" onclick="prevLesson()">← Previous</button>
+                    <button class="btn btn-next" onclick="nextLesson()">Next →</button>
+                </div>
+            </div>
+
+            <!-- Excel8: Conditional Formatting -->
+            <div id="lesson-excel8" class="lesson hidden">
+                <h2>Conditional Formatting</h2>
+
+                <p>Conditional formatting automatically applies formatting to cells based on their values or formulas.</p>
+
+                <h3>Basic Conditional Formatting Rules</h3>
+                <div class="example">
+                    <div class="example-label">CONDITIONAL FORMATTING TYPES</div>
+                    <div class="code-block">Highlight Cell Rules:
+- Greater Than / Less Than
+- Between values
+- Equal To
+- Text Contains
+- Date occurring
+
+Top/Bottom Rules:
+- Top 10 items
+- Top 10%
+- Above/Below Average
+- Above/Bottom 10%
+
+Data Bars: Horizontal bars in cells
+Color Scales: Gradient colors
+Icon Sets: Arrows, flags, symbols</div>
+                </div>
+
+                <h3>Custom Formula-Based Formatting</h3>
+                <div class="code-block">Use formulas for complex conditions:
+
+Highlight duplicates:
+=COUNTIF($A:$A, $A1) > 1
+
+Highlight weekends:
+=WEEKDAY(A1, 2) > 5
+
+Highlight based on another cell:
+=$B1 > $C1
+
+Conditional formatting with dates:
+=TODAY() - A1 > 30 (over 30 days old)</div>
+
+                <h3>Managing Conditional Formatting</h3>
+                <ul style="margin-left: 20px; line-height: 1.8;">
+                    <li>Home → Conditional Formatting → Manage Rules</li>
+                    <li>Rules are evaluated in order (first match wins)</li>
+                    <li>Can copy formatting with Format Painter</li>
+                    <li>Clear rules from selected cells or entire sheet</li>
+                </ul>
+
+                <h3>Try It Yourself</h3>
+                <div class="try-it-yourself">
+                    <div class="try-header">
+                        <span>✏️ Apply Conditional Formatting</span>
+                        <button class="run-btn" onclick="runExcel('excel8')">▶ Apply</button>
+                    </div>
+                    <div class="try-container">
+                        <div class="try-editor">
+                            <textarea id="code-excel8">-- Sample data: Sales figures in A1:A10
+-- Apply conditional formatting rules:
+-- Green for values > 1000
+-- Yellow for values between 500-1000
+-- Red for values < 500
+
+-- Custom formula examples:
+-- Highlight cells: =A1 > AVERAGE($A:$A)
+-- Highlight rows: =$A1 = MAX($A:$A)
+-- Alternate rows: =MOD(ROW(), 2) = 0</textarea>
+                        </div>
+                        <div class="try-preview">
+                            <div class="result" id="result-excel8">
+Conditional formatting applied!
+
+Cells > 1000: Green background
+Cells 500-1000: Yellow background
+Cells < 500: Red background
+
+Custom rules can create sophisticated visual effects and data highlighting.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="youtube-video" style="margin: 20px 0;">
+                    <h4>📹 Related YouTube Video</h4>
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/1RXcHiJIe9s?si=B9g_h5o3ZfWtwMPh" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                <!--Video link u8
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/1RXcHiJIe9s?si=B9g_h5o3ZfWtwMPh" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>-->
+                </div>
+
+                <div class="nav-buttons">
+                    <button class="btn btn-prev" onclick="prevLesson()">← Previous</button>
+                    <button class="btn btn-next" onclick="nextLesson()">Next →</button>
+                </div>
+            </div>
+
+            <!-- Excel9: Data Validation & Tables -->
+            <div id="lesson-excel9" class="lesson hidden">
+                <h2>Data Validation and Excel Tables</h2>
+
+                <p>Data validation controls what users can enter in cells, while Excel tables provide structured data management.</p>
+
+                <h3>Data Validation Rules</h3>
+                <table class="excel-table">
+                    <tr><th>Validation Type</th><th>Options</th><th>Use Case</th></tr>
+                    <tr><td>Any Value</td><td>No restrictions</td><td>Default</td></tr>
+                    <tr><td>Whole Number</td><td>Between, equal, greater than</td><td>Age, quantity</td></tr>
+                    <tr><td>Decimal</td><td>Between, equal, greater than</td><td>Price, percentage</td></tr>
+                    <tr><td>List</td><td>Dropdown from range or list</td><td>Categories, status</td></tr>
+                    <tr><td>Date</td><td>Between dates, before/after</td><td>Due dates</td></tr>
+                    <tr><td>Time</td><td>Between times</td><td>Schedule times</td></tr>
+                    <tr><td>Text Length</td><td>Minimum/maximum length</td><td>Names, codes</td></tr>
+                    <tr><td>Custom</td><td>Formula-based</td><td>Complex rules</td></tr>
+                </table>
+
+                <h3>Creating Drop-down Lists</h3>
+                <div class="code-block">Method 1 - From range:
+1. Select cells for validation
+2. Data → Data Validation → Allow: List
+3. Source: =A1:A10 (or named range)
+
+Method 2 - Direct list:
+Source: "Option 1,Option 2,Option 3"
+
+Dynamic lists (expanding):
+Source: =OFFSET($A$1,0,0,COUNTA($A:$A),1)</div>
+
+                <h3>Excel Tables</h3>
+                <div class="example">
+                    <div class="example-label">TABLE FEATURES</div>
+                    <div class="code-block">Creating a table:
+1. Select data range
+2. Insert → Table (or Ctrl + T)
+3. Check "My table has headers"
+
+Table benefits:
+- Auto-expanding (adds rows automatically)
+- Structured references (Table1[Column1])
+- Built-in filtering and sorting
+- Calculated columns
+- Total row
+- Easy formatting with table styles
+
+Table references:
+=SUM(Table1[Sales]) instead of =SUM(B2:B100)</div>
+                </div>
+
+                <h3>Try It Yourself</h3>
+                <div class="try-it-yourself">
+                    <div class="try-header">
+                        <span>✏️ Create Data Validation and Tables</span>
+                        <button class="run-btn" onclick="runExcel('excel9')">▶ Create</button>
+                    </div>
+                    <div class="try-container">
+                        <div class="try-editor">
+                            <textarea id="code-excel9">-- Create a data validation dropdown:
+-- Cell A1: Department dropdown with "Sales,Marketing,HR,Finance"
+
+-- Create an Excel table:
+-- Data in A1:C5 with headers: Name, Department, Salary
+-- Convert to table and add total row
+
+-- Table formula example:
+-- =SUM(Table1[Salary]) - sums all salaries
+-- =AVERAGE(Table1[Salary]) - average salary</textarea>
+                        </div>
+                        <div class="try-preview">
+                            <div class="result" id="result-excel9">
+Data validation dropdown created in A1 with department options.
+
+Excel table created with sample data:
++----------+------------+--------+
+| Name     | Department | Salary |
++----------+------------+--------+
+| John Doe | Sales      | 50000  |
+| Jane Smith| Marketing | 55000  |
+| Bob Johnson| HR       | 48000  |
++----------+------------+--------+
+
+Table formulas:
+Total Salary: $153,000
+Average Salary: $51,000
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="youtube-video" style="margin: 20px 0;">
+                    <h4>📹 Related YouTube Video</h4>
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/1RXcHiJIe9s?si=zUDOqPUu6oD16_Qr" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                <!--Video link u9
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/1RXcHiJIe9s?si=zUDOqPUu6oD16_Qr" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>-->
+                </div>
+
+                <div class="nav-buttons">
+                    <button class="btn btn-prev" onclick="prevLesson()">← Previous</button>
+                    <button class="btn btn-next" onclick="nextLesson()">Next →</button>
+                </div>
+            </div>
+
+            <!-- Excel10: Charts & Basic Visualization -->
+            <div id="lesson-excel10" class="lesson hidden">
+                <h2>Charts and Basic Data Visualization</h2>
+
+                <p>Charts help visualize data patterns and make complex information easier to understand.</p>
+
+                <h3>Chart Types</h3>
+                <table class="excel-table">
+                    <tr><th>Chart Type</th><th>Best For</th><th>Example Use</th></tr>
+                    <tr><td>Column Chart</td><td>Comparing values across categories</td><td>Monthly sales by product</td></tr>
+                    <tr><td>Line Chart</td><td>Showing trends over time</td><td>Stock prices, temperature</td></tr>
+                    <tr><td>Pie Chart</td><td>Showing parts of a whole</td><td>Market share, budget allocation</td></tr>
+                    <tr><td>Bar Chart</td><td>Horizontal comparison</td><td>Survey responses</td></tr>
+                    <tr><td>Area Chart</td><td>Cumulative data over time</td><td>Portfolio value over time</td></tr>
+                    <tr><td>Scatter Plot</td><td>Relationship between variables</td><td>Height vs weight correlation</td></tr>
+                </table>
+
+                <h3>Creating Charts</h3>
+                <div class="code-block">Quick chart creation:
+1. Select data range (including headers)
+2. Insert → Charts → Choose chart type
+3. Excel automatically creates the chart
+
+Chart elements:
+- Chart Title
+- Axis Titles
+- Legend
+- Data Labels
+- Gridlines
+- Trendlines
+
+Customization:
+- Chart Styles (Design tab)
+- Colors and effects
+- Layout options</div>
+
+                <h3>Chart Best Practices</h3>
+                <ul style="margin-left: 20px; line-height: 1.8;">
+                    <li>Use appropriate chart types for your data</li>
+                    <li>Keep it simple - avoid chart junk</li>
+                    <li>Use consistent colors and styles</li>
+                    <li>Add titles and labels for clarity</li>
+                    <li>Start Y-axis at zero for accurate representation</li>
+                    <li>Use data labels sparingly</li>
+                </ul>
+
+                <h3>Try It Yourself</h3>
+                <div class="try-it-yourself">
+                    <div class="try-header">
+                        <span>✏️ Create Charts</span>
+                        <button class="run-btn" onclick="runExcel('excel10')">▶ Create Chart</button>
+                    </div>
+                    <div class="try-container">
+                        <div class="try-editor">
+                            <textarea id="code-excel10">-- Sample sales data:
+-- Month | Product A | Product B | Product C
+-- Jan | 1000 | 1200 | 800
+-- Feb | 1100 | 1150 | 900
+-- Mar | 1200 | 1300 | 1000
+-- Apr | 1150 | 1250 | 950
+
+-- Create these charts:
+-- 1. Column chart for monthly comparison
+-- 2. Line chart for trend analysis
+-- 3. Pie chart for March product distribution</textarea>
+                        </div>
+                        <div class="try-preview">
+                            <div class="result" id="result-excel10">
+Charts created successfully!
+
+Column Chart: Shows monthly sales comparison across products
+- Clear visual comparison of sales figures
+- Easy to see which product performs best each month
+
+Line Chart: Displays sales trends over time
+- Shows growth/decline patterns
+- Helps identify seasonal trends
+
+Pie Chart: Shows March product distribution
+- Product A: 37.8%
+- Product B: 38.8%
+- Product C: 23.4%
+
+All charts include proper titles, legends, and formatting.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="youtube-video" style="margin: 20px 0;">
+                    <h4>📹 Related YouTube Video</h4>
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/XkfDWZmADkw?si=ODVLrWNXYBdOOK5J" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+               <!--Video link u10
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/XkfDWZmADkw?si=ODVLrWNXYBdOOK5J" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>-->
+                </div>
+
+                <div class="nav-buttons">
+                    <button class="btn btn-prev" onclick="prevLesson()">← Previous</button>
+                    <button class="btn btn-next" onclick="nextLesson()">Next →</button>
+                </div>
+            </div>
+
+            <!-- Excel11: PivotTables Basics -->
+            <div id="lesson-excel11" class="lesson hidden">
+                <h2>PivotTables - Basics</h2>
+
+                <p>PivotTables are powerful tools for summarizing, analyzing, and presenting large amounts of data.</p>
+
+                <h3>What is a PivotTable?</h3>
+                <ul style="margin-left: 20px; line-height: 1.8;">
+                    <li>Interactive way to summarize large datasets</li>
+                    <li>Can rearrange data dynamically</li>
+                    <li>Automatically calculates subtotals and totals</li>
+                    <li>Easy to create charts from PivotTable data</li>
+                    <li>Can handle thousands of rows of data efficiently</li>
+                </ul>
+
+                <h3>Creating a PivotTable</h3>
+                <div class="code-block">Step-by-step process:
+1. Select your data range (or table)
+2. Insert → PivotTable
+3. Choose where to place the PivotTable
+4. Drag fields to areas:
+   - Rows: Categories to display as rows
+   - Columns: Categories for column headers
+   - Values: Fields to summarize (Sum, Count, Average, etc.)
+   - Filters: Fields to filter the entire PivotTable</div>
+
+                <h3>PivotTable Areas</h3>
+                <table class="excel-table">
+                    <tr><th>Area</th><th>Purpose</th><th>Example</th></tr>
+                    <tr><td>Rows</td><td>Categories for row labels</td><td>Product names, months</td></tr>
+                    <tr><td>Columns</td><td>Categories for column headers</td><td>Regions, years</td></tr>
+                    <tr><td>Values</td><td>Data to summarize</td><td>Sales amounts, quantities</td></tr>
+                    <tr><td>Filters</td><td>Filter entire table</td><td>Date ranges, categories</td></tr>
+                </table>
+
+                <h3>Value Field Settings</h3>
+                <div class="example">
+                    <div class="example-label">SUMMARY FUNCTIONS</div>
+                    <div class="code-block">Sum: Total of values
+Count: Number of entries
+Average: Mean of values
+Max: Highest value
+Min: Lowest value
+Product: Multiply values
+Count Numbers: Count numeric entries
+StdDev: Standard deviation
+Var: Variance</div>
+                </div>
+
+                <h3>Try It Yourself</h3>
+                <div class="try-it-yourself">
+                    <div class="try-header">
+                        <span>✏️ Create a PivotTable</span>
+                        <button class="run-btn" onclick="runExcel('excel11')">▶ Create</button>
+                    </div>
+                    <div class="try-container">
+                        <div class="try-editor">
+                            <textarea id="code-excel11">-- Sample sales data:
+-- Date | Product | Region | Sales | Quantity
+-- 1/1/2023 | Widget A | North | 1000 | 10
+-- 1/1/2023 | Widget B | North | 1200 | 12
+-- 1/2/2023 | Widget A | South | 800 | 8
+-- 1/2/2023 | Widget B | South | 1500 | 15
+
+-- Create PivotTable:
+-- Rows: Product
+-- Columns: Region
+-- Values: Sum of Sales, Sum of Quantity
+-- Filters: Date</textarea>
+                        </div>
+                        <div class="try-preview">
+                            <div class="result" id="result-excel11">
+PivotTable created successfully!
+
+Sales by Product and Region:
++----------------+--------+--------+
+| Product/Region | North  | South  |
++----------------+--------+--------+
+| Widget A       | 1000   | 800    |
+| Widget B       | 1200   | 1500   |
++----------------+--------+--------+
+| Grand Total    | 2200   | 2300   |
++----------------+--------+--------+
+
+Quantity by Product and Region:
++----------------+--------+--------+
+| Product/Region | North  | South  |
++----------------+--------+--------+
+| Widget A       | 10     | 8      |
+| Widget B       | 12     | 15     |
++----------------+--------+--------+
+| Grand Total    | 22     | 23     |
++----------------+--------+--------+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="youtube-video" style="margin: 20px 0;">
+                    <h4>📹 Related YouTube Video</h4>
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/gjoV5P5xAwM?si=zbcY-H8aYUvl18hN" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <!--video link u11
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/gjoV5P5xAwM?si=zbcY-H8aYUvl18hN" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>-->
+                </div>
+
+                <div class="nav-buttons">
+                    <button class="btn btn-prev" onclick="prevLesson()">← Previous</button>
+                    <button class="btn btn-next" onclick="nextLesson()">Next →</button>
+                </div>
+            </div>
+
+            <!-- Excel12: Advanced PivotTables -->
+            <div id="lesson-excel12" class="lesson hidden">
+                <h2>Advanced PivotTables & PivotCharts</h2>
+
+                <p>Advanced PivotTable features include calculated fields, grouping, slicers, and timelines.</p>
+
+                <h3>Calculated Fields and Items</h3>
+                <div class="example">
+                    <div class="example-label">CALCULATED FIELD EXAMPLES</div>
+                    <div class="code-block">Adding calculated fields:
+1. Right-click PivotTable → Fields, Items & Sets → Calculated Field
+2. Name: "Profit Margin"
+3. Formula: =Profit / Sales
+
+Common calculated fields:
+- Profit Margin: =Profit / Sales
+- Growth Rate: =(Current - Previous) / Previous
+- Commission: =Sales * 0.05
+- Bonus: =IF(Sales > 10000, Sales * 0.02, 0)</div>
+                </div>
+
+                <h3>Grouping Data</h3>
+                <div class="code-block">Grouping options:
+- Dates: By months, quarters, years
+- Numbers: Into ranges (0-100, 101-500, etc.)
+- Text: Manual grouping of similar items
+
+Date grouping:
+Right-click date field → Group → Select grouping levels
+
+Number grouping:
+Right-click number field → Group → Set starting/ending points and interval</div>
+
+                <h3>Slicers and Timelines</h3>
+                <div class="example">
+                    <div class="example-label">SLICER FEATURES</div>
+                    <div class="code-block">Creating slicers:
+1. Select PivotTable
+2. Insert → Slicer
+3. Choose fields to create slicers for
+
+Timeline for dates:
+1. Select PivotTable with date field
+2. Insert → Timeline
+3. Select date field
+
+Slicer benefits:
+- Visual filtering
+- Multiple selection
+- Search functionality
+- Connect to multiple PivotTables
+- Custom styling</div>
+                </div>
+
+                <h3>PivotCharts</h3>
+                <div class="code-block">Creating PivotCharts:
+1. Select PivotTable
+2. Insert → PivotChart
+3. Choose chart type
+
+PivotChart features:
+- Automatically updates with PivotTable changes
+- Interactive filtering with slicers
+- Drill down capability
+- Field buttons for customization</div>
+
+                <h3>Try It Yourself</h3>
+                <div class="try-it-yourself">
+                    <div class="try-header">
+                        <span>✏️ Advanced PivotTable Features</span>
+                        <button class="run-btn" onclick="runExcel('excel12')">▶ Create</button>
+                    </div>
+                    <div class="try-container">
+                        <div class="try-editor">
+                            <textarea id="code-excel12">-- Enhanced sales data with costs:
+-- Date | Product | Region | Sales | Cost
+-- 1/1/2023 | Widget A | North | 1000 | 600
+-- 1/1/2023 | Widget B | North | 1200 | 800
+
+-- Create advanced PivotTable:
+-- Add calculated field: Profit = Sales - Cost
+-- Add calculated field: Margin = Profit / Sales
+-- Group dates by month
+-- Add slicers for Product and Region
+-- Create a PivotChart</textarea>
+                        </div>
+                        <div class="try-preview">
+                            <div class="result" id="result-excel12">
+Advanced PivotTable created!
+
+Calculated Fields Added:
+- Profit: Sales - Cost
+- Margin: Profit / Sales (formatted as percentage)
+
+Data grouped by month with interactive slicers for Product and Region filtering.
+
+PivotChart created showing sales trends with ability to drill down into specific products and regions.
+
+Features demonstrated:
+✓ Calculated fields with custom formulas
+✓ Date grouping
+✓ Interactive slicers
+✓ PivotChart integration
+✓ Dynamic filtering and drill-down
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="youtube-video" style="margin: 20px 0;">
+                    <h4>📹 Related YouTube Video</h4>
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/gjoV5P5xAwM?si=zbcY-H8aYUvl18hN" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+               <!--Video link u12
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/gjoV5P5xAwM?si=zbcY-H8aYUvl18hN" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>-->
+                </div>
+
+                <div class="nav-buttons">
+                    <button class="btn btn-prev" onclick="prevLesson()">← Previous</button>
+                    <button class="btn btn-next" onclick="nextLesson()">Next →</button>
+                </div>
+            </div>
+
+            <!-- Excel13: Advanced Charting -->
+            <div id="lesson-excel13" class="lesson hidden">
+                <h2>Advanced Charting Techniques</h2>
+
+                <p>Advanced charting goes beyond basic charts to include dynamic charts, sparklines, and combination charts.</p>
+
+                <h3>Dynamic Charts</h3>
+                <div class="example">
+                    <div class="example-label">DYNAMIC CHART TECHNIQUES</div>
+                    <div class="code-block">Drop-down driven charts:
+1. Create named ranges with OFFSET formulas
+2. Use data validation for drop-down selection
+3. Chart references the dynamic named range
+
+Scrolling charts for large datasets:
+- Use OFFSET to create rolling windows of data
+- Chart updates as you scroll through data
+
+Interactive charts with form controls:
+- Option buttons, scroll bars, check boxes
+- Linked to chart data ranges</div>
+                </div>
+
+                <h3>Sparklines</h3>
+                <div class="code-block">Mini-charts in cells:
+Insert → Sparklines → Line/Column/Win-Loss
+
+Types:
+- Line: Trend over time
+- Column: Compare values
+- Win-Loss: Binary outcomes
+
+Customization:
+- Markers for high/low points
+- Negative point styling
+- Axis settings</div>
+
+                <h3>Combination Charts</h3>
+                <div class="code-block">Multiple chart types in one:
+1. Create initial chart
+2. Right-click series → Change Chart Type
+3. Select different type for each series
+
+Common combinations:
+- Column + Line (dual axis)
+- Area + Line
+- Column + Column (different scales)</div>
+
+                <h3>Advanced Formatting</h3>
+                <ul style="margin-left: 20px; line-height: 1.8;">
+                    <li>Custom number formatting on axis labels</li>
+                    <li>Error bars for statistical analysis</li>
+                    <li>Trendlines with equations</li>
+                    <li>Secondary axis for different scales</li>
+                    <li>Chart templates for reuse</li>
+                    <li>Dynamic titles using formulas</li>
+                </ul>
+
+                <h3>Try It Yourself</h3>
+                <div class="try-it-yourself">
+                    <div class="try-header">
+                        <span>✏️ Create Advanced Charts</span>
+                        <button class="run-btn" onclick="runExcel('excel13')">▶ Create</button>
+                    </div>
+                    <div class="try-container">
+                        <div class="try-editor">
+                            <textarea id="code-excel13">-- Create advanced visualizations:
+-- 1. Sparklines: Add line sparklines to show trends
+-- 2. Combination Chart: Column + Line chart
+-- 3. Dynamic Chart: Chart that updates with drop-down selection
+-- 4. Add trendlines and error bars
+
+-- Sample data for sparklines:
+-- Month | Sales | Trend
+-- Jan | 1000 | [sparkline]
+-- Feb | 1200 | [sparkline]
+-- Mar | 1100 | [sparkline]</textarea>
+                        </div>
+                        <div class="try-preview">
+                            <div class="result" id="result-excel13">
+Advanced charts created!
+
+✓ Sparklines: Mini line charts showing sales trends in single cells
+✓ Combination Chart: Columns for sales, line for target/goal
+✓ Dynamic Chart: Updates based on selected product category
+✓ Trendlines: Linear regression with R² values
+✓ Error Bars: Statistical analysis showing variability
+
+Chart features demonstrated:
+- Interactive elements
+- Professional styling
+- Statistical analysis tools
+- Dynamic data connections
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="youtube-video" style="margin: 20px 0;">
+                    <h4>📹 Related YouTube Video</h4>
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/nhQObRGk6hA?si=szlMQ0rD_CRibD-" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+               <!--video link u13
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/nhQObRGk6hA?si=szlMQ0rD_CRibD-_" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>-->
+                </div>
+
+                <div class="nav-buttons">
+                    <button class="btn btn-prev" onclick="prevLesson()">← Previous</button>
+                    <button class="btn btn-next" onclick="nextLesson()">Next →</button>
+                </div>
+            </div>
+
+            <!-- Excel14: Excel Dashboards & Reporting -->
+            <div id="lesson-excel14" class="lesson hidden">
+                <h2>Excel Dashboards & Reporting</h2>
+
+                <p>Excel dashboards combine multiple visualizations and data summaries into interactive reports.</p>
+
+                <h3>Dashboard Design Principles</h3>
+                <ul style="margin-left: 20px; line-height: 1.8;">
+                    <li><strong>Clear Purpose:</strong> Know your audience and what they need</li>
+                    <li><strong>Simple Layout:</strong> Avoid clutter, use white space effectively</li>
+                    <li><strong>Consistent Design:</strong> Same colors, fonts, and styles throughout</li>
+                    <li><strong>Interactive Elements:</strong> Slicers, drop-downs for filtering</li>
+                    <li><strong>Key Metrics First:</strong> Most important KPIs at the top</li>
+                    <li><strong>Mobile-Friendly:</strong> Consider how it looks on different screens</li>
+                </ul>
+
+                <h3>Building a Simple Dashboard</h3>
+                <div class="example">
+                    <div class="example-label">DASHBOARD COMPONENTS</div>
+                    <div class="code-block">1. Data Source: Clean, structured data (preferably in tables)
+
+2. Key Metrics Section:
+   - Use large, clear number displays
+   - Include sparklines for trends
+   - Color coding (green = good, red = bad)
+
+3. Charts Section:
+   - Mix of chart types (bar, line, pie)
+   - Consistent color scheme
+   - Clear titles and labels
+
+4. Interactive Filters:
+   - Slicers for easy filtering
+   - Drop-down menus
+   - Timeline controls
+
+5. Details Section:
+   - PivotTables for drill-down
+   - Raw data tables (filtered)</div>
+                </div>
+
+                <h3>Easy Dashboard Example: Sales Performance</h3>
+                <div class="example">
+                    <div class="example-label">SIMPLE SALES DASHBOARD LAYOUT</div>
+                    <div class="code-block">Top Section - Key Metrics:
+┌─────────────────┬─────────────────┬─────────────────┐
+│ Total Sales:    │ Monthly Growth: │ Top Product:    │
+│ $125,430        │ +12.5% ↑        │ Widget A        │
+│ [sparkline]     │ [sparkline]     │                 │
+└─────────────────┴─────────────────┴─────────────────┘
+
+Middle Section - Charts:
+┌─────────────────┬─────────────────┐
+│ Monthly Sales   │ Sales by Region │
+│ [Line Chart]     │ [Pie Chart]     │
+│ Trending up     │ North: 40%      │
+└─────────────────┴─────────────────┘
+
+Bottom Section - Details:
+┌───────────────────────────────────┐
+│ Sales Details [PivotTable]        │
+│ Filters: [Month] [Region]         │
+│                                   │
+│ Date    Product   Region   Sales  │
+│ 1/1     Widget A  North    1000   │
+│ 1/1     Widget B  North    1200   │
+└───────────────────────────────────┘</div>
+                </div>
+
+                <h3>Dashboard Best Practices</h3>
+                <div class="example">
+                    <div class="example-label">PROFESSIONAL DASHBOARD TIPS</div>
+                    <div class="code-block">Color Usage:
+- Use 3-5 colors maximum
+- Blue for primary data
+- Green for positive, Red for negative
+- Gray for secondary information
+
+Typography:
+- Use 2-3 font sizes
+- Bold for headers, regular for data
+- Sans-serif fonts (Arial, Calibri)
+
+Layout:
+- Use grid system (align elements)
+- Group related items together
+- Provide breathing room between sections
+
+Interactivity:
+- Add hover effects on charts
+- Use hyperlinks between dashboard sections
+- Include "Reset Filters" button</div>
+                </div>
+
+                <h3>Creating the Sales Dashboard Example</h3>
+                <div class="try-it-yourself">
+                    <div class="try-header">
+                        <span>✏️ Build Sales Performance Dashboard</span>
+                        <button class="run-btn" onclick="runExcel('excel14')">▶ Create Dashboard</button>
+                    </div>
+                    <div class="try-container">
+                        <div class="try-editor">
+                            <textarea id="code-excel14">-- Create a simple sales dashboard:
+
+-- Step 1: Prepare data
+-- Sales table with: Date, Product, Region, Sales, Cost
+
+-- Step 2: Create summary metrics
+-- Total Sales: =SUM(Sales[Sales])
+-- Monthly Growth: = (Current Month - Previous Month) / Previous Month
+-- Top Product: =INDEX(SORTBY(Products[Product], Products[Sales], -1), 1)
+
+-- Step 3: Add visualizations
+-- KPI cards with large numbers and sparklines
+-- Line chart for monthly trends
+-- Pie chart for regional breakdown
+-- PivotTable for detailed view
+
+-- Step 4: Add interactivity
+-- Slicers for Product and Region filtering
+-- Timeline for date filtering</textarea>
+                        </div>
+                        <div class="try-preview">
+                            <div class="result" id="result-excel14">
+Sales Performance Dashboard Created!
+
+📊 Dashboard Layout:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  SALES PERFORMANCE DASHBOARD
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+📈 Key Metrics:
+• Total Sales: $125,430 (+8.5% vs last month)
+• Monthly Growth: +12.5% 
+• Top Product: Widget A ($45,230)
+
+📊 Monthly Sales Trend:
+[Line Chart] - Showing steady upward trend with seasonal peaks
+
+🗺️ Sales by Region:
+[Pie Chart] - North: 40%, South: 35%, East: 15%, West: 10%
+
+📋 Detailed Breakdown:
+[PivotTable with Slicers]
+┌─────────────────────────────────────────────┐
+│ Filters: [Jan 2024] [All Regions]           │
+│                                             │
+│ Product    Region    Sales    Growth %      │
+│ Widget A   North     $15,430  +15.2%        │
+│ Widget B   South     $12,850  +8.7%         │
+│ Widget C   North     $9,240   -2.1%         │
+└─────────────────────────────────────────────┘
+
+🎛️ Interactive Controls:
+• Month selector (Timeline)
+• Region filter (Slicer)
+• Product category filter (Slicer)
+
+✨ Features:
+✓ Professional styling with consistent colors
+✓ Interactive filtering across all components
+✓ KPI cards with trend indicators
+✓ Mobile-responsive design considerations
+✓ Easy to update with new data
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="note">
+                    <strong>💡 Dashboard Tip:</strong> Start simple and add complexity gradually. Focus on the most important metrics first, then enhance with additional visualizations and interactivity.
+                </div>
+
+                <div class="youtube-video" style="margin: 20px 0;">
+                    <h4>📹 Related YouTube Video</h4>
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/1lIfAVJMpRQ?si=-NUKLRTArn1d6mJO" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <!--video link u14
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/1lIfAVJMpRQ?si=-NUKLRTArn1d6mJO" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>-->
+                </div>
+
+                <div class="nav-buttons">
+                    <button class="btn btn-prev" onclick="prevLesson()">← Previous</button>
+                    <button class="btn btn-next" onclick="nextLesson()">Next →</button>
+                </div>
+            </div>
+
+            <!-- Excel15: Array Formulas & Dynamic Arrays -->
+            <div id="lesson-excel15" class="lesson hidden">
+                <h2>Array Formulas and Dynamic Arrays</h2>
+
+                <p>Array formulas and dynamic arrays (Excel 365/2021) allow you to perform complex calculations and return multiple results.</p>
+
+                <h3>Traditional Array Formulas</h3>
+                <div class="code-block">Enter with Ctrl + Shift + Enter (CSE):
+
+Single cell array formula:
+{=SUM(A1:A10*B1:B10)}
+
+Multi-cell array formula:
+Select B1:B10, enter =A1:A10*2, press Ctrl+Shift+Enter
+
+Common uses:
+- Sum products: {=SUM(A1:A10*B1:B10)}
+- Count unique: {=SUM(1/COUNTIF(A1:A100,A1:A100))}
+- Extract unique values: Complex INDEX/MATCH combinations</div>
+
+                <h3>Dynamic Arrays (Excel 365+)</h3>
+                <div class="example">
+                    <div class="example-label">DYNAMIC ARRAY FUNCTIONS</div>
+                    <div class="code-block">FILTER function:
+=FILTER(A2:A100, B2:B100="Active")
+
+SORT function:
+=SORT(A2:A100, 1, TRUE) - ascending
+=SORT(A2:A100, 1, FALSE) - descending
+
+UNIQUE function:
+=UNIQUE(A2:A100) - remove duplicates
+
+SEQUENCE function:
+=SEQUENCE(10) - numbers 1-10
+=SEQUENCE(5,3,10,2) - 5x3 array starting at 10, step 2
+
+SORTBY function:
+=SORTBY(A2:A100, B2:B100, 1) - sort A by B ascending</div>
+                </div>
+
+                <h3>Advanced Dynamic Array Techniques</h3>
+                <div class="code-block">Spilling ranges:
+- Formulas that return multiple values automatically "spill"
+- Referenced with # symbol: =SORT(A1#)
+
+Combining functions:
+=FILTER(SORT(A2:A100), B2:B100>100)
+
+Dynamic named ranges:
+- No need for OFFSET formulas anymore
+- Ranges automatically expand/contract</div>
+
+                <h3>Try It Yourself</h3>
+                <div class="try-it-yourself">
+                    <div class="try-header">
+                        <span>✏️ Practice Dynamic Arrays</span>
+                        <button class="run-btn" onclick="runExcel('excel15')">▶ Calculate</button>
+                    </div>
+                    <div class="try-container">
+                        <div class="try-editor">
+                            <textarea id="code-excel15">-- Sample data in A1:B10:
+-- Name | Score
+-- Alice | 85
+-- Bob | 92
+-- Charlie | 78
+-- Alice | 88
+
+-- Try dynamic array functions:
+=UNIQUE(A1:A10) -- Get unique names
+=SORT(B1:B10, 1, FALSE) -- Sort scores descending
+=FILTER(A1:B10, B1:B10 >= 85) -- Filter high scores
+=SORTBY(A1:A10, B1:B10, -1) -- Sort names by score desc
+
+-- Advanced: Count unique scores
+=COUNTA(UNIQUE(B1:B10))</textarea>
+                        </div>
+                        <div class="try-preview">
+                            <div class="result" id="result-excel15">
+Dynamic array results:
+
+Unique Names: Alice, Bob, Charlie
+
+Sorted Scores (descending): 92, 88, 85, 78
+
+High Scores (>=85):
+Alice | 85
+Bob | 92
+Alice | 88
+
+Names by Score (descending):
+Bob, Alice, Alice, Charlie
+
+Unique Score Count: 4
+
+Dynamic arrays automatically spill to adjacent cells and update when source data changes!
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="youtube-video" style="margin: 20px 0;">
+                    <h4>📹 Related YouTube Video</h4>
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/Cy24FIcZmB0?si=mxzmwDk5B6ohA-nd" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+               <!--video link u15
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/Cy24FIcZmB0?si=mxzmwDk5B6ohA-nd" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>-->
+                </div>
+
+                <div class="nav-buttons">
+                    <button class="btn btn-prev" onclick="prevLesson()">← Previous</button>
+                    <button class="btn btn-next" onclick="nextLesson()">Next →</button>
+                </div>
+            </div>
+
+            <!-- Excel16: What-If Analysis -->
+            <div id="lesson-excel16" class="lesson hidden">
+                <h2>What-If Analysis Tools</h2>
+
+                <p>What-If Analysis helps you explore different scenarios and understand how changes affect outcomes.</p>
+
+                <h3>Goal Seek</h3>
+                <div class="code-block">Find input value to achieve desired result:
+
+Example: What sales price gives $10,000 profit?
+- Set cell: Profit formula (=Revenue - Costs)
+- Goal: $10,000
+- Changing cell: Sales price
+
+Data → What-If Analysis → Goal Seek
+- Set cell: B5 (profit)
+- To value: 10000
+- By changing cell: B2 (price)</div>
+
+                <h3>Scenario Manager</h3>
+                <div class="example">
+                    <div class="example-label">SCENARIO MANAGER EXAMPLE</div>
+                    <div class="code-block">Compare different business scenarios:
+
+1. Create base scenario
+   - Best case: High sales, low costs
+   - Worst case: Low sales, high costs
+   - Most likely: Average values
+
+2. Data → What-If Analysis → Scenario Manager
+
+3. Add scenarios with different input values
+
+4. Generate summary report showing all scenarios side-by-side
+
+Business use cases:
+- Budget planning (optimistic/pessimistic forecasts)
+- Pricing strategy analysis
+- Investment decision modeling</div>
+                </div>
+
+                <h3>Data Tables</h3>
+                <div class="code-block">One-variable data table:
+- Column of input values
+- Formula referencing the input
+- Data → What-If Analysis → Data Table
+
+Two-variable data table:
+- Row inputs and column inputs
+- Formula in top-left corner
+- Shows how two variables affect the result
+
+Example: Price vs Quantity analysis
+- Rows: Different prices
+- Columns: Different quantities
+- Result: Total revenue for each combination</div>
+
+                <h3>Try It Yourself</h3>
+                <div class="try-it-yourself">
+                    <div class="try-header">
+                        <span>✏️ What-If Analysis Examples</span>
+                        <button class="run-btn" onclick="runExcel('excel16')">▶ Analyze</button>
+                    </div>
+                    <div class="try-container">
+                        <div class="try-editor">
+                            <textarea id="code-excel16">-- Simple business model:
+-- Price: $50, Quantity: 100, Cost per unit: $30
+-- Revenue: =Price * Quantity
+-- Costs: =Cost_per_unit * Quantity
+-- Profit: =Revenue - Costs
+
+-- Goal Seek: What price gives $2,000 profit?
+
+-- Scenarios:
+-- Best Case: Price $60, Cost $25, Quantity 120
+-- Worst Case: Price $40, Cost $35, Quantity 80
+-- Base Case: Price $50, Cost $30, Quantity 100
+
+-- Data Table: Price sensitivity (rows) vs Quantity (columns)</textarea>
+                        </div>
+                        <div class="try-preview">
+                            <div class="result" id="result-excel16">
+What-If Analysis Results:
+
+🎯 Goal Seek:
+To achieve $2,000 profit, price needs to be $66.67
+(With quantity = 100, cost = $30/unit)
+
+📊 Scenario Analysis:
+┌─────────────┬─────────┬─────────┬──────────┐
+│ Scenario    │ Price   │ Profit  │ Growth % │
+├─────────────┼─────────┼─────────┼──────────┤
+│ Best Case   │ $60     │ $4,200  │ +67%     │
+│ Base Case   │ $50     │ $2,000  │ 0%       │
+│ Worst Case  │ $40     │ $400    │ -80%     │
+└─────────────┴─────────┴─────────┴──────────┘
+
+📈 Data Table (Price vs Quantity):
+     Qty →     80      100     120
+Price ↓
+$40          $800   $1,000  $1,200
+$50        $1,000   $1,250  $1,500
+$60        $1,200   $1,500  $1,800
+
+What-If Analysis helps make informed business decisions!
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="youtube-video" style="margin: 20px 0;">
+                    <h4>📹 Related YouTube Video</h4>
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/OWfyJ-bngEg" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <!--video link u16
+                    -->
+                </div>
+
+                <div class="nav-buttons">
+                    <button class="btn btn-prev" onclick="prevLesson()">← Previous</button>
+                    <button class="btn btn-next" onclick="nextLesson()">Next →</button>
+                </div>
+            </div>
+
+            <!-- Excel17: Power Query -->
+            <div id="lesson-excel17" class="lesson hidden">
+                <h2>Power Query for Data Import and Cleaning</h2>
+
+                <p>Power Query is Excel's data connection and transformation engine, available in Excel 2016+ and Excel 365.</p>
+
+                <h3>Getting Data into Excel</h3>
+                <div class="example">
+                    <div class="example-label">DATA IMPORT SOURCES</div>
+                    <div class="code-block">Data → Get Data (Get & Transform):
+
+From Files:
+- Excel workbooks
+- CSV/Text files
+- XML, JSON files
+- Folder (import all files in a folder)
+
+From Databases:
+- SQL Server, Oracle, MySQL
+- Access databases
+- Azure SQL Database
+
+From Online Services:
+- SharePoint lists
+- Microsoft Exchange
+- Salesforce, Dynamics 365
+
+From Other Sources:
+- Web pages (HTML tables)
+- OData feeds
+- Blank query (M language)</div>
+                </div>
+
+                <h3>Data Cleaning with Power Query</h3>
+                <table class="excel-table">
+                    <tr><th>Operation</th><th>Power Query Tool</th><th>Use Case</th></tr>
+                    <tr><td>Remove duplicates</td><td>Home → Remove Rows → Remove Duplicates</td><td>Clean duplicate records</td></tr>
+                    <tr><td>Filter data</td><td>Home → Filter or column filter</td><td>Remove unwanted rows</td></tr>
+                    <tr><td>Split columns</td><td>Home → Split Column</td><td>Separate combined data</td></tr>
+                    <tr><td>Merge columns</td><td>Add Column → Merge Columns</td><td>Combine text columns</td></tr>
+                    <tr><td>Change data types</td><td>Home → Data Type</td><td>Ensure correct formatting</td></tr>
+                    <tr><td>Unpivot data</td><td>Transform → Unpivot Columns</td><td>Normalize cross-tab data</td></tr>
+                    <tr><td>Add conditional columns</td><td>Add Column → Conditional Column</td><td>Create calculated columns</td></tr>
+                </table>
+
+                <h3>M Language (Advanced)</h3>
+                <div class="code-block">Power Query's formula language:
+
+Basic transformations:
+= Table.SelectRows(Source, each [Status] = "Active")
+= Table.RemoveColumns(Source, {"UnwantedColumn"})
+= Table.AddColumn(Source, "FullName", each [FirstName] & " " & [LastName])
+
+Advanced operations:
+= Table.Group(Source, {"Category"}, {{"Total", each List.Sum([Amount]), type number}})
+= Table.Pivot(Source, List.Distinct(Source[Attribute]), "Attribute", "Value")</div>
+
+                <h3>Try It Yourself</h3>
+                <div class="try-it-yourself">
+                    <div class="try-header">
+                        <span>✏️ Power Query Data Cleaning</span>
+                        <button class="run-btn" onclick="runExcel('excel17')">▶ Transform</button>
+                    </div>
+                    <div class="try-container">
+                        <div class="try-editor">
+                            <textarea id="code-excel17">-- Sample messy data:
+-- Name,Email,Phone,Status,Sales
+-- John Doe,john@email.com,555-1234,Active,1000
+-- Jane Smith,jane@email.com,,Inactive,800
+-- Bob Johnson,bob@email.com,555-5678,Active,1200
+-- John Doe,john@email.com,555-1234,Active,1000
+
+-- Power Query transformations:
+-- 1. Remove duplicates
+-- 2. Filter out inactive customers
+-- 3. Split Name into First/Last
+-- 4. Clean phone numbers
+-- 5. Add total sales calculation
+-- 6. Load to Excel table</textarea>
+                        </div>
+                        <div class="try-preview">
+                            <div class="result" id="result-excel17">
+Power Query transformation completed!
+
+Original Data Issues:
+- Duplicate records
+- Missing phone numbers
+- Inconsistent formatting
+- Mixed data types
+
+Applied Transformations:
+✓ Removed duplicate rows (John Doe appeared twice)
+✓ Filtered to show only Active customers
+✓ Split "Name" column into "FirstName" and "LastName"
+✓ Cleaned and standardized phone number format
+✓ Added "SalesCategory" column (High/Low based on sales)
+✓ Changed data types (numbers, dates, text)
+
+Cleaned Result:
+┌────────────┬───────────┬─────────────┬─────────┬──────────────┐
+│ FirstName  │ LastName  │ Email       │ Phone   │ SalesCategory│
+├────────────┼───────────┼─────────────┼─────────┼──────────────┤
+│ John       │ Doe       │ john@email │ (555)   │ High         │
+│ Bob        │ Johnson   │ bob@email  │ (555)   │ High         │
+└────────────┴───────────┴─────────────┴─────────┴──────────────┘
+
+Data loaded to Excel as a refreshable connection!
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="youtube-video" style="margin: 20px 0;">
+                    <h4>📹 Related YouTube Video</h4>
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/7R5X8pXH9P8" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+
+                <div class="nav-buttons">
+                    <button class="btn btn-prev" onclick="prevLesson()">← Previous</button>
+                    <button class="btn btn-next" onclick="nextLesson()">Next →</button>
+                </div>
+            </div>
+
+            <!-- Excel18: Power Pivot -->
+            <div id="lesson-excel18" class="lesson hidden">
+                <h2>Power Pivot and Data Model</h2>
+
+                <p>Power Pivot extends Excel's data analysis capabilities with advanced modeling and relationships.</p>
+
+                <h3>What is Power Pivot?</h3>
+                <ul style="margin-left: 20px; line-height: 1.8;">
+                    <li>Data modeling tool for large datasets</li>
+                    <li>Handles millions of rows efficiently</li>
+                    <li>Creates relationships between tables</li>
+                    <li>Uses DAX (Data Analysis Expressions) formulas</li>
+                    <li>Advanced calculations and measures</li>
+                    <li>Time intelligence functions</li>
+                </ul>
+
+                <h3>Creating Relationships</h3>
+                <div class="code-block">Add tables to Data Model:
+1. Data → Manage Data Model
+2. Get External Data → From Other Sources
+3. Import multiple related tables
+
+Create relationships:
+- Drag primary key to foreign key
+- One-to-many relationships
+- Many-to-many with bridge tables
+
+Relationship types:
+- Active: Used by default
+- Inactive: Must be activated in formulas</div>
+
+                <h3>DAX Formulas</h3>
+                <div class="example">
+                    <div class="example-label">COMMON DAX FUNCTIONS</div>
+                    <div class="code-block">Calculated Columns:
+FullName = [FirstName] & " " & [LastName]
+Profit = [Sales] - [Cost]
+Margin = [Profit] / [Sales]
+
+Measures (Aggregations):
+TotalSales = SUM(Sales[Amount])
+AvgOrderValue = AVERAGE(Sales[Amount])
+CustomerCount = DISTINCTCOUNT(Sales[CustomerID])
+
+Time Intelligence:
+SalesLastMonth = CALCULATE([TotalSales], PREVIOUSMONTH('Date'[Date]))
+YTD_Sales = TOTALYTD([TotalSales], 'Date'[Date])
+Growth = [TotalSales] - CALCULATE([TotalSales], SAMEPERIODLASTYEAR('Date'[Date]))</div>
+                </div>
+
+                <h3>Advanced Data Model Features</h3>
+                <div class="code-block">Hierarchies:
+- Create drill-down paths (Year → Quarter → Month → Day)
+- Use in PivotTables and PivotCharts
+
+KPIs (Key Performance Indicators):
+- Define target values and status indicators
+- Visual indicators (green/yellow/red)
+
+Perspectives:
+- Create custom views of the data model
+- Show only relevant tables/measures for specific users</div>
+
+                <h3>Try It Yourself</h3>
+                <div class="try-it-yourself">
+                    <div class="try-header">
+                        <span>✏️ Build Data Model with Relationships</span>
+                        <button class="run-btn" onclick="runExcel('excel18')">▶ Model</button>
+                    </div>
+                    <div class="try-container">
+                        <div class="try-editor">
+                            <textarea id="code-excel18">-- Create a sales data model:
+
+-- Tables to import:
+-- 1. Sales: Date, CustomerID, ProductID, Quantity, Amount
+-- 2. Customers: CustomerID, Name, Region, Segment
+-- 3. Products: ProductID, Name, Category, Price
+-- 4. Dates: Date, Year, Quarter, Month, Day
+
+-- Create relationships:
+-- Sales.CustomerID → Customers.CustomerID
+-- Sales.ProductID → Products.ProductID
+-- Sales.Date → Dates.Date
+
+-- Create DAX measures:
+-- TotalSales = SUM(Sales[Amount])
+-- TotalQuantity = SUM(Sales[Quantity])
+-- AvgOrderValue = [TotalSales] / DISTINCTCOUNT(Sales[OrderID])
+-- CustomerCount = DISTINCTCOUNT(Customers[CustomerID])
+
+-- Time intelligence:
+-- SalesLastMonth = CALCULATE([TotalSales], PREVIOUSMONTH(Dates[Date]))
+-- SalesGrowth = [TotalSales] - [SalesLastMonth]</textarea>
+                        </div>
+                        <div class="try-preview">
+                            <div class="result" id="result-excel18">
+Power Pivot Data Model Created!
+
+📊 Data Model Structure:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  Sales (Fact Table)
+     ↙         ↘
+Customers    Products
+     ↘         ↙
+       Dates
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🔗 Relationships Established:
+• Sales.CustomerID → Customers.CustomerID (Many-to-One)
+• Sales.ProductID → Products.ProductID (Many-to-One)
+• Sales.Date → Dates.Date (Many-to-One)
+
+📈 DAX Measures Created:
+• Total Sales: $1,247,500
+• Total Quantity: 12,450 units
+• Average Order Value: $124.75
+• Customer Count: 1,247
+• Sales Growth: +8.5% vs last month
+
+⏰ Time Intelligence:
+• Year-to-Date Sales: $987,300
+• Quarter-over-Quarter Growth: +12.3%
+• Same Period Last Year: $1,145,200
+
+🎯 Key Insights:
+• Top Product Category: Electronics (35% of sales)
+• Best Customer Segment: Enterprise (45% of revenue)
+• Peak Sales Month: December (18% of annual sales)
+
+Data model enables complex analysis across multiple related tables!
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="youtube-video" style="margin: 20px 0;">
+                    <h4>📹 Related YouTube Video</h4>
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/7R5X8pXH9P8" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+
+                <div class="nav-buttons">
+                    <button class="btn btn-prev" onclick="prevLesson()">← Previous</button>
+                    <button class="btn btn-next" onclick="nextLesson()">Next →</button>
+                </div>
+            </div>
+
+            <!-- Excel19: Macros Introduction -->
+            <div id="lesson-excel19" class="lesson hidden">
+                <h2>Introduction to Macros and VBA</h2>
+
+                <p>Macros automate repetitive tasks in Excel using VBA (Visual Basic for Applications).</p>
+
+                <h3>What are Macros?</h3>
+                <ul style="margin-left: 20px; line-height: 1.8;">
+                    <li>Recorded sequences of actions</li>
+                    <li>Written in VBA programming language</li>
+                    <li>Can be triggered by buttons, shortcuts, or events</li>
+                    <li>Save time on repetitive tasks</li>
+                    <li>Reduce human error</li>
+                    <li>Can include logic and decision-making</li>
+                </ul>
+
+                <h3>Recording a Macro</h3>
+                <div class="code-block">Step-by-step recording:
+1. View → Macros → Record Macro
+2. Name your macro (no spaces, start with letter)
+3. Assign shortcut key (optional)
+4. Choose storage location (This Workbook)
+5. Perform the actions you want to record
+6. View → Macros → Stop Recording
+
+Recording tips:
+- Plan your steps before recording
+- Avoid selecting cells unnecessarily
+- Use relative references when needed
+- Test the macro after recording</div>
+
+                <h3>Running Macros</h3>
+                <div class="example">
+                    <div class="example-label">MACRO EXECUTION METHODS</div>
+                    <div class="code-block">Method 1: Keyboard shortcut
+- Press the assigned shortcut key
+
+Method 2: Macro dialog
+- View → Macros → View Macros
+- Select macro and click Run
+
+Method 3: Button on worksheet
+- Insert → Shapes → Rectangle
+- Right-click → Assign Macro
+
+Method 4: Quick Access Toolbar
+- File → Options → Quick Access Toolbar
+- Add "Run Macro" command
+
+Method 5: Ribbon button
+- Customize Ribbon → Add New Group
+- Add macro commands</div>
+                </div>
+
+                <h3>Macro Security</h3>
+                <div class="code-block">Excel Macro Security Levels:
+- Disable all macros without notification
+- Disable all macros with notification
+- Disable all macros except digitally signed
+- Enable all macros (not recommended)
+
+Best practices:
+- Only enable macros from trusted sources
+- Use digital signatures for important macros
+- Keep macro-enabled workbooks (.xlsm) separate
+- Regularly scan for viruses</div>
+
+                <h3>Try It Yourself</h3>
+                <div class="try-it-yourself">
+                    <div class="try-header">
+                        <span>✏️ Record Your First Macro</span>
+                        <button class="run-btn" onclick="runExcel('excel19')">▶ Record</button>
+                    </div>
+                    <div class="try-container">
+                        <div class="try-editor">
+                            <textarea id="code-excel19">-- Record a simple formatting macro:
+
+-- Steps to record:
+-- 1. Select a range of cells (A1:D10)
+-- 2. Apply formatting:
+--    - Bold text (Ctrl + B)
+--    - Fill color (yellow)
+--    - Border (all borders)
+--    - AutoFit columns
+-- 3. Stop recording
+
+-- Assign to a button:
+-- 1. Insert → Shapes → Rounded Rectangle
+-- 2. Right-click shape → Assign Macro
+-- 3. Select your recorded macro
+
+-- Test the macro:
+-- Enter some data in A1:D10
+-- Click the button to apply formatting</textarea>
+                        </div>
+                        <div class="try-preview">
+                            <div class="result" id="result-excel19">
+Macro recorded and assigned to button!
+
+🎬 Recorded Actions:
+✓ Selected range A1:D10
+✓ Applied bold formatting
+✓ Set yellow fill color
+✓ Added borders around cells
+✓ Auto-fitted column widths
+
+🔘 Button Created:
+• Shape: Rounded rectangle
+• Text: "Format Data"
+• Macro: FormatDataRange
+• Location: Top of worksheet
+
+⚡ Test Results:
+Before: Plain data in cells
+After: Professional formatting applied instantly
+
+Macro saves time and ensures consistency!
+Next: Learn VBA programming for more advanced automation.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="youtube-video" style="margin: 20px 0;">
+                    <h4>📹 Related YouTube Video</h4>
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/vlto-Df6m1Y" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+
+                <div class="nav-buttons">
+                    <button class="btn btn-prev" onclick="prevLesson()">← Previous</button>
+                    <button class="btn btn-next" onclick="nextLesson()">Next →</button>
+                </div>
+            </div>
+
+            <!-- Excel20: VBA Basics -->
+            <div id="lesson-excel20" class="lesson hidden">
+                <h2>VBA Programming Basics</h2>
+
+                <p>VBA (Visual Basic for Applications) is Excel's programming language for creating advanced macros and automation.</p>
+
+                <h3>VBA Editor</h3>
+                <div class="code-block">Accessing VBA Editor:
+- Alt + F11 (quick access)
+- View → Macros → View Macros → Edit
+- Developer tab → Visual Basic (if enabled)
+
+VBA Editor components:
+- Project Explorer: Lists workbooks and modules
+- Properties Window: Object properties
+- Code Window: Where you write code
+- Immediate Window: For testing and debugging</div>
+
+                <h3>Basic VBA Syntax</h3>
+                <div class="example">
+                    <div class="example-label">VBA CODE STRUCTURE</div>
+                    <div class="code-block">Sub procedure (macro):
+Sub MyMacro()
+    ' Code goes here
+End Sub
+
+Function procedure:
+Function CalculateTax(amount As Double) As Double
+    CalculateTax = amount * 0.08
+End Function
+
+Variables:
+Dim customerName As String
+Dim orderTotal As Double
+Dim isActive As Boolean
+
+Constants:
+Const TAX_RATE As Double = 0.08</div>
+                </div>
+
+                <h3>Common VBA Objects</h3>
+                <table class="excel-table">
+                    <tr><th>Object</th><th>Description</th><th>Example</th></tr>
+                    <tr><td>Workbook</td><td>Excel file</td><td>Workbooks("Book1.xlsx")</td></tr>
+                    <tr><td>Worksheet</td><td>Sheet in workbook</td><td>Worksheets("Sheet1")</td></tr>
+                    <tr><td>Range</td><td>Cell or range of cells</td><td>Range("A1") or Range("A1:B10")</td></tr>
+                    <tr><td>Cells</td><td>Individual cell</td><td>Cells(1, 1) ' Row 1, Column 1</td></tr>
+                    <tr><td>Selection</td><td>Currently selected cells</td><td>Selection.Value = "Hello"</td></tr>
+                </table>
+
+                <h3>Control Structures</h3>
+                <div class="code-block">If-Then-Else:
+If score >= 90 Then
+    grade = "A"
+ElseIf score >= 80 Then
+    grade = "B"
+Else
+    grade = "F"
+End If
+
+For-Next loop:
+For i = 1 To 10
+    Cells(i, 1).Value = i * 2
+Next i
+
+Do-While loop:
+Do While Cells(i, 1).Value <> ""
+    total = total + Cells(i, 1).Value
+    i = i + 1
+Loop</div>
+
+                <h3>Error Handling</h3>
+                <div class="code-block">On Error Resume Next
+' Code that might cause errors
+
+On Error GoTo ErrorHandler
+' Code here
+
+Exit Sub
+ErrorHandler:
+    MsgBox "An error occurred: " & Err.Description</div>
+
+                <h3>Try It Yourself</h3>
+                <div class="try-it-yourself">
+                    <div class="try-header">
+                        <span>✏️ Write Your First VBA Code</span>
+                        <button class="run-btn" onclick="runExcel('excel20')">▶ Run Code</button>
+                    </div>
+                    <div class="try-container">
+                        <div class="try-editor">
+                            <textarea id="code-excel20">-- VBA Code Example:
+
+Sub FormatReport()
+    ' Declare variables
+    Dim lastRow As Long
+    Dim i As Long
+    
+    ' Find last row with data
+    lastRow = Cells(Rows.Count, 1).End(xlUp).Row
+    
+    ' Loop through each row
+    For i = 2 To lastRow
+        ' Check if sales > 1000
+        If Cells(i, 3).Value > 1000 Then
+            ' Highlight high performers
+            Range(Cells(i, 1), Cells(i, 5)).Interior.Color = RGB(144, 238, 144)
+        End If
+    Next i
+    
+    ' Add summary
+    Cells(lastRow + 2, 1).Value = "Report generated on: " & Format(Date, "mm/dd/yyyy")
+End Sub
+
+-- This macro:
+-- 1. Finds all rows with data
+-- 2. Highlights rows where sales > 1000
+-- 3. Adds a timestamp at the bottom</textarea>
+                        </div>
+                        <div class="try-preview">
+                            <div class="result" id="result-excel20">
+VBA Code Executed Successfully!
+
+📊 Sample Data Processed:
+┌────────────┬───────────┬─────────┬────────────┬────────────┐
+│ Name       │ Region    │ Sales   │ Date       │ Status     │
+├────────────┼───────────┼─────────┼────────────┼────────────┤
+│ John Doe   │ North     │ 1250    │ 1/15/2024 │ ⭐ High     │
+│ Jane Smith │ South     │ 850     │ 1/16/2024 │ Normal     │
+│ Bob Wilson │ North     │ 2100    │ 1/17/2024 │ ⭐ High     │
+│ Alice Brown│ East      │ 675     │ 1/18/2024 │ Normal     │
+└────────────┴───────────┴─────────┴────────────┴────────────┘
+
+🎨 Formatting Applied:
+• High performers (> $1000) highlighted in light green
+• Summary timestamp added: "Report generated on: 01/20/2024"
+
+⚡ VBA Features Demonstrated:
+✓ Variable declarations
+✓ Looping through data
+✓ Conditional logic
+✓ Cell formatting
+✓ Date functions
+
+VBA enables complex automation beyond recorded macros!
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="note">
+                    <strong>💡 VBA Tip:</strong> Always comment your code and use meaningful variable names. Test your macros on sample data before running on important files.
+                </div>
+
+                <div class="youtube-video" style="margin: 20px 0;">
+                    <h4>📹 Related YouTube Video</h4>
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/vlto-Df6m1Y" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+
+                <div class="nav-buttons">
+                    <button class="btn btn-prev" onclick="prevLesson()">← Previous</button>
+                    <button class="btn btn-next" onclick="nextLesson()">Next →</button>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <script>
+        const lessons = [
+            'excel1', 'excel2', 'excel3', 'excel4', 'excel5', 'excel6', 'excel7', 'excel8', 'excel9', 'excel10',
+            'excel11', 'excel12', 'excel13', 'excel14', 'excel15', 'excel16', 'excel17', 'excel18', 'excel19', 'excel20'
+        ];
+        let currentLessonIndex = 0;
+
+        function loadLesson(lessonId) {
+            // Hide all lessons
+            document.querySelectorAll('.lesson').forEach(lesson => {
+                lesson.classList.add('hidden');
+            });
+
+            // Show selected lesson
+            document.getElementById(`lesson-${lessonId}`).classList.remove('hidden');
+
+            // Update sidebar active state
+            document.querySelectorAll('.sidebar-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            event.target.closest('.sidebar-item').classList.add('active');
+
+            // Update current lesson index
+            currentLessonIndex = lessons.indexOf(lessonId);
+
+            // Update progress
+            updateProgress();
+
+            // Run the code if it exists
+            setTimeout(() => runExcel(lessonId), 100);
+        }
+
+        function nextLesson() {
+            if (currentLessonIndex < lessons.length - 1) {
+                const nextLesson = lessons[currentLessonIndex + 1];
+                document.querySelector(`[onclick="loadLesson('${nextLesson}')"]`).click();
+            } else {
+                alert('🎉 Congratulations! You have completed the Excel course!');
+            }
+        }
+
+        function prevLesson() {
+            if (currentLessonIndex > 0) {
+                const prevLesson = lessons[currentLessonIndex - 1];
+                document.querySelector(`[onclick="loadLesson('${prevLesson}')"]`).click();
+            }
+        }
+
+        function runExcel(lessonId) {
+            const codeInput = document.getElementById(`code-${lessonId}`);
+            const preview = document.getElementById(`result-${lessonId}`);
+
+            if (!codeInput || !preview) return;
+
+            // Simulate Excel operations with sample results
+            const code = codeInput.value.trim();
+            let result = '';
+
+            // Simple simulation of Excel results
+            if (code.includes('SUM(A1:A5)')) {
+                result = `Excel Formula Result:\nSUM(A1:A5) = 150\n\n(Assuming A1:A5 contains: 10, 20, 30, 40, 50)`;
+            } else if (code.includes('VLOOKUP')) {
+                result = `Excel VLOOKUP Result:\n=VLOOKUP("John", A1:B5, 2, FALSE) = "Doe"\n\n(Lookup successful - found John Doe in the table)`;
+            } else if (code.includes('FILTER')) {
+                result = `Excel Dynamic Array Result:\n=FILTER(A1:B5, B1:B5 >= 85)\n\nFiltered Results:\nAlice | 85\nBob | 92\nCharlie | 88`;
+            } else {
+                result = 'Excel operation completed successfully!\n\n(This is a simulated result for demonstration purposes)';
+            }
+
+            preview.textContent = result;
+        }
+
+        function updateProgress() {
+            const progress = ((currentLessonIndex + 1) / lessons.length) * 100;
+            document.getElementById('progressBar').style.width = progress + '%';
+        }
+
+        function showSection(section) {
+            // Placeholder for navigation
+            alert(`Navigating to ${section} section`);
+        }
+
+        // Initialize
+        window.addEventListener('load', () => {
+            loadLesson('excel1');
+        });
+    </script>
+</body>
+</html>
